@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- (c) Fannar Már Sigurðsson & Finnbjörn Þorvaldsson -->
+<!-- Háskólinn í Reykjavík -->
+<!-- WEPO, vor 2013-->
+<!-- Programming assignment 1 -->
+<html>
+<head>
+
+</head>
+<body>
+
+<p>Starts here</p>
+
+<canvas id="drawing-board" width="1000px" height="1000px">
+	<p>
+		Your browser does not support this. Please update your browser and enter 2013.
+	</p>
+</canvas>
+
+<p>Ends here</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript">
+	var canvas = document.getElementById("drawing-board");
+	//var canvas = $("#drawing-board");
+	var context = canvas.getContext("2d");
+
+	var x;
+	var y;
+
+	$(canvas).mousedown( function(e) {
+		x = e.offsetX; // e._x; //e.pageX - this.offsetLeft;
+		y = e.offsetY; //e._y; //e.pageY - this.offsetTop;
+	});
+
+	$(canvas).mouseup( function(e) {
+		context.fillStyle = "blue";
+
+		dx = e.pageX - this.offsetLeft;
+		dy = e.pageY - this.offsetTop;
+
+		context.fillRect(x, y, dx, dy);
+	})
+</script>
+
+</body>
+</html>
+
+fannar bíddu
+búðu til git fyrir etta
+snöggvast
+(getur notað hitt
+DL winSCP   -fannarsworld.com user: finnbjorn
+pass Hrfinnbjorn2012
+
+HRfinnbjorn2012
