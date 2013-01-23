@@ -8,11 +8,11 @@ function Shape( x, y ){
 	var m_x = ( x === undefined ) ? 0 : x;
 	var m_y = ( y === undefined ) ? 0 : y;
 
-	this.draw() = function(){
-		// Empty, is abstract and
-		// should be overloded in
-		// derived "classes"!
-	}
+	// this.draw() = function(){
+	// 	// Empty, is abstract and
+	// 	// should be overloded in
+	// 	// derived "classes"!
+	// }
 
 	this.getX = function(){
 		return m_x;
@@ -26,5 +26,4 @@ var shape = new Shape();
 
 console.log( "this.x = " + this.x );
 console.log( "shape.getX = " + shape.getX() );
-
 console.log( "Shape class loaded." );
