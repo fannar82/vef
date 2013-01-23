@@ -11,7 +11,7 @@
 
 <p>Starts here</p>
 
-<canvas id="drawing-board" width="1000px" height="1000px">
+<canvas id="drawing-board" width="800px" height="800px">
 	<p>
 		Your browser does not support this. Please update your browser and enter 2013.
 	</p>
@@ -20,26 +20,19 @@
 <p>Ends here</p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
 <script type="text/javascript">
 	var canvas = document.getElementById("drawing-board");
 	//var canvas = $("#drawing-board");
 	var context = canvas.getContext("2d");
 
+	$(canvas).mousedown( function(e) {
+		var rect = new Rectangle(e.offsetX, e.offsetY);
+	});
 
-	// This brilliant code-stub was borrowed from this site:
-	// http://dev.opera.com/articles/view/html5-canvas-painting/#implementingevents
-	// We did not see a reason to change this code since it's
-	// short, simple and concise.
-	function ev_canvas (e) {
-	  if (e.layerX || e.layerX == 0) { // Firefox
-	    e._x = e.layerX;
-	    e._y = e.layerY;
-	  } else if (e.offsetX || e.offsetX == 0) { // Opera & Chrome
-	    e._x = e.offsetX;
-	    e._y = e.offsetY;
-	  }
-	}
+	$(canvas).mouseup( function(e) {
+		rect.setDelta( e.pageX, e.pageY );
+		rect.draw();
+	});
 </script>
 <script type="text/javascript" src="shape.js"></script>
 <script type="text/javascript" src="rect.js"></script>
