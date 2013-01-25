@@ -1,7 +1,33 @@
-var color;
-$("#red").click(selectedColor("red"));
-$("#blue").click(selectedColor("blue"));
+var color = "red";
+tool = "circle";
 
-function selectedColor (color) {
-	this.color = color;
-}
+// function selectedColor (_color) {
+// 	color = _color;
+// 	console.log(color);
+// };
+
+ $("#blue").click(function() {
+ 	color = "blue";
+});
+ 
+ $("#red").click(function() {
+ 	color = "red";
+}); 
+
+$("#circle").click(function() {
+ 	tool = "circle";
+ 	console.log(tool);
+
+}); 
+
+$("#rectangle").click(function() {
+ 	tool = "rectangle";
+ 	console.log(tool);
+
+}); 
+
+
+
+
+
+ //$("#red").click(selectedColor("red")); working progress.

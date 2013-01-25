@@ -13,11 +13,14 @@
 
 <p>Starts here</p>
 <div id="colorPicker">
-	<ul>
-		<li id="blue">Blue</li>
-		<li id="red">Red</li>
-	</ul>
+	<span id="blue">Blue</span>
+	<span id="red">Red</span>
 </div>
+<div id="toolPicker">
+	<span id="rectangle">Rectangle</span>
+	<span id="circle">Circle</span>
+</div>
+
 <canvas id="drawing-board" width="800px" height="800px">
 	<p>
 		Your browser does not support this. Please update your browser and enter 2013.
@@ -31,8 +34,10 @@
 	var testShape;
 	var canvas = document.getElementById("drawing-board");
 	var context = canvas.getContext("2d");
+	tool = "circle";
 
-	$(canvas).mousedown( function(e) {
+	if(tool == "rectangle"){
+		$(canvas).mousedown( function(e) {
 		//StartX,Y fixes browser compability
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
@@ -44,11 +49,29 @@
 		testShape.draw();
 	});
 
+	};
+
+	if(tool == "circle"){
+			$(canvas).mousedown( function(e) {
+			//StartX,Y fixes browser compability
+			startX = e.pageX - this.offsetLeft;
+			startY = e.pageY - this.offsetTop;
+			testShape = new Circle(startX, startY);
+		});
+	
+		$(canvas).mouseup( function(e) {
+			testShape.setEnd( e.pageX, e.pageY );
+			testShape.draw();
+		});
+	}
 
 </script>
 
+<script type="text/javascript" src="color.js"></script>
 <script type="text/javascript" src="shape.js"></script>
 <script type="text/javascript" src="rect.js"></script>
+<script type="text/javascript" src="circle.js"></script>
+
 
 </body>
 </html>

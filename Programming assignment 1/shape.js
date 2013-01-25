@@ -16,12 +16,7 @@ console.log( "Shape class loading." );
 	  getX: function() {
 	    return this.x;
 	  },
-
-	  hullo: function() {
-	    console.log("hullo");
-	  },
 	  
-
 	  setEnd: function ( x, y ) {
 		console.log( "SetEnd Not Implemented In Derived Class");
 	  },

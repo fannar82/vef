@@ -1,4 +1,4 @@
-var Rectangle = Shape.extend({
+var Circle = Shape.extend({
 	  constructor: function(x,y) {
 	    this.base(x,y);
 	  },
@@ -10,7 +10,11 @@ var Rectangle = Shape.extend({
 	  },
 
 	  draw: function() {
+		context.beginPath();
+		context.arc(200, 200, 50, 0 , 2 * Math.PI);
 		context.fillStyle = color;
-		context.fillRect(this.x, this.y, endX, endY);
+		context.closePath();
+		context.fill();
 	}
 });
+ 
