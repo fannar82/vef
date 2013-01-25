@@ -2,27 +2,45 @@ console.log( "Shape class loading." );
 
 //var shape = new Object();
 
-function Shape( x, y ){
-	// Initialize the shape to x=0 and y=0.
+// function Shape( x, y ){
+// 	// Initialize the shape to x=0 and y=0.
 	
-	var m_x = ( x === undefined ) ? 0 : x;
-	var m_y = ( y === undefined ) ? 0 : y;
+// 	var m_x = ( x === undefined ) ? 0 : x;
+// 	var m_y = ( y === undefined ) ? 0 : y;
 
-	// this.draw() = function(){
-	// 	// Empty, is abstract and
-	// 	// should be overloded in
-	// 	// derived "classes"!
-	// }
+// 	// this.draw() = function(){
+// 	// 	// Empty, is abstract and
+// 	// 	// should be overloded in
+// 	// 	// derived "classes"!
+// 	// }
 
-	this.getX = function(){
-		return m_x;
-	}
+// 	this.getX = function(){
+// 		return m_x;
+// 	}
 
+// 	this.getY = function(){
+// 		return m_y;
+// 	}
+// }
+// var shape = new Shape();
+
+// Fannar - Base Prufa
+
+var Shape = Base.extend({
+	constructor: function(x,y) {
+		this.x;
+		this.y;
+		this.endX;
+		this.endY;
+	},
 	this.getY = function(){
-		return m_y;
+		return this.y;
+	},
+	this.getX = function() {
+		return this.x;
 	}
-}
-var shape = new Shape();
+
+})
 
 console.log( "this.x = " + this.x );
 console.log( "shape.getX = " + shape.getX() );
