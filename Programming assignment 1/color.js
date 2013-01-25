@@ -1,3 +1,5 @@
+//Langar svolítið að renama þessa skrá í smá svona misc color\tools or sum. (undo)
+
 var color = "red";
 tool = "circle";
 
