@@ -1,47 +1,34 @@
 console.log( "Shape class loading." );
 
-//var shape = new Object();
+	var Shape = Base.extend({
+	  constructor: function(x,y) {
+	    this.x = x;
+	    this.y = y;
+	  },
 
-// function Shape( x, y ){
-// 	// Initialize the shape to x=0 and y=0.
-	
-// 	var m_x = ( x === undefined ) ? 0 : x;
-// 	var m_y = ( y === undefined ) ? 0 : y;
+	  endX: 0,
+	  endY: 0,
+	   
+	  getY: function() {
+	    return this.y;
+	  },
+	  
+	  getX: function() {
+	    return this.x;
+	  },
 
-// 	// this.draw() = function(){
-// 	// 	// Empty, is abstract and
-// 	// 	// should be overloded in
-// 	// 	// derived "classes"!
-// 	// }
+	  hullo: function() {
+	    console.log("hullo");
+	  },
+	  
 
-// 	this.getX = function(){
-// 		return m_x;
-// 	}
+	  setEnd: function ( x, y ) {
+		console.log( "SetEnd Not Implemented In Derived Class");
+	  },
 
-// 	this.getY = function(){
-// 		return m_y;
-// 	}
-// }
-// var shape = new Shape();
+	  draw: function() {
+	  	console.log("Draw Not Implemented In Derived Class ")
+	  }
+});
 
-// Fannar - Base Prufa
-
-var Shape = Base.extend({
-	constructor: function(x,y) {
-		this.x;
-		this.y;
-		this.endX;
-		this.endY;
-	},
-	this.getY = function(){
-		return this.y;
-	},
-	this.getX = function() {
-		return this.x;
-	}
-
-})
-
-console.log( "this.x = " + this.x );
-console.log( "shape.getX = " + shape.getX() );
 console.log( "Shape class loaded." );

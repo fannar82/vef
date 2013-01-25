@@ -5,12 +5,19 @@
 <!-- Programming assignment 1 -->
 <html>
 <head>
+<script type="text/javascript" src="Base.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 </head>
 <body>
 
 <p>Starts here</p>
-
+<div id="colorPicker">
+	<ul>
+		<li id="blue">Blue</li>
+		<li id="red">Red</li>
+	</ul>
+</div>
 <canvas id="drawing-board" width="800px" height="800px">
 	<p>
 		Your browser does not support this. Please update your browser and enter 2013.
@@ -19,22 +26,29 @@
 
 <p>Ends here</p>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
 <script type="text/javascript">
+	var testShape;
 	var canvas = document.getElementById("drawing-board");
-	//var canvas = $("#drawing-board");
 	var context = canvas.getContext("2d");
 
 	$(canvas).mousedown( function(e) {
-		var rect = new Rectangle(e.offsetX, e.offsetY);
+		//StartX,Y fixes browser compability
+		startX = e.pageX - this.offsetLeft;
+		startY = e.pageY - this.offsetTop;
+		testShape = new Rectangle(startX, startY);
+	});
+	
+	$(canvas).mouseup( function(e) {
+		testShape.setEnd( e.pageX, e.pageY );
+		testShape.draw();
 	});
 
-	$(canvas).mouseup( function(e) {
-		rect.setDelta( e.pageX, e.pageY );
-		rect.draw();
-	});
+
 </script>
+
 <script type="text/javascript" src="shape.js"></script>
 <script type="text/javascript" src="rect.js"></script>
+
 </body>
 </html>
