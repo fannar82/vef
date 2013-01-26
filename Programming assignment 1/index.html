@@ -29,48 +29,45 @@
 
 <p>Ends here</p>
 
-
 <script type="text/javascript">
-	var testShape;
+	console.log("Main loading.");
+	var currentShape;
 	var canvas = document.getElementById("drawing-board");
 	var context = canvas.getContext("2d");
-	tool = "circle";
-
-	if(tool == "rectangle"){
-		$(canvas).mousedown( function(e) {
-		//StartX,Y fixes browser compability
+	var tool = "rectangle";
+	var color = "red";
+	var shapesArray = new Array();
+	
+	$(canvas).mousedown( function(e) {
+		// Set starting point (different shapes might
+		// treat "starting point" differently)
+		// StartX,Y fixes browser compability
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
-		testShape = new Rectangle(startX, startY);
+
+		// Select shape to draw
+		if(tool == "rectangle"){
+			currentShape = new Rectangle(startX, startY);
+		}
+		if(tool == "circle"){
+			currentShape = new Circle(startX, startY);
+		}
 	});
 	
 	$(canvas).mouseup( function(e) {
-		testShape.setEnd( e.pageX, e.pageY );
-		testShape.draw();
+		currentShape.setEnd( e.pageX, e.pageY );
+		currentShape.draw();
+		shapesArray.push(currentShape);
+		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
+		console.log( "List of all shapes: " + shapesArray.toString() );
 	});
-
-	};
-
-	if(tool == "circle"){
-			$(canvas).mousedown( function(e) {
-			//StartX,Y fixes browser compability
-			startX = e.pageX - this.offsetLeft;
-			startY = e.pageY - this.offsetTop;
-			testShape = new Circle(startX, startY);
-		});
-	
-		$(canvas).mouseup( function(e) {
-			testShape.setEnd( e.pageX, e.pageY );
-			testShape.draw();
-		});
-	}
-
+	console.log("Main loaded.");
 </script>
 
 <script type="text/javascript" src="color.js"></script>
 <script type="text/javascript" src="shape.js"></script>
-<script type="text/javascript" src="rect.js"></script>
 <script type="text/javascript" src="circle.js"></script>
+<script type="text/javascript" src="rect.js"></script>
 
 
 </body>

@@ -1,20 +1,24 @@
+console.log( "Circle class loading." );
+
 var Circle = Shape.extend({
-	  constructor: function(x,y) {
+	constructor: function(x,y) {
 	    this.base(x,y);
-	  },
+	    console.log( "Circle constructor loaded." );
+	},
 	  
-	  setEnd: function ( x, y ) {
-		endX = x - canvas.offsetLeft - this.x;
-		endY = y - canvas.offsetTop - this.y;
-		
+	setEnd: function ( x, y ) {
+		endX = x - canvas.offsetLeft;
+		endY = y - canvas.offsetTop;
 	  },
 
-	  draw: function() {
+	draw: function() {
+		var radius = Math.sqrt( Math.pow((this.x-endX),2) + Math.pow((this.y-endY),2) );
 		context.beginPath();
-		context.arc(200, 200, 50, 0 , 2 * Math.PI);
+		context.arc(this.x, this.y, radius, 0 , 2 * Math.PI, false);
 		context.fillStyle = color;
 		context.closePath();
 		context.fill();
 	}
 });
- 
+
+console.log( "Circle class loaded." );
