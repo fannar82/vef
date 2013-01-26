@@ -8,6 +8,8 @@ var Freehand = Shape.extend({
 
 		console.log( "Freehand constructor loaded." );
 	},
+
+	iAm: "Freehand",
 	  
 	setEnd: function ( x, y ) {
 		endX = x - canvas.offsetLeft;

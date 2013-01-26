@@ -5,6 +5,8 @@ var Rectangle = Shape.extend({
 		this.base(x,y);
 		console.log( "Rectangle constructor loaded." );
 	},
+
+	iAm: "Rectangle",
 	  
 	setEnd: function ( x, y ) {
 		endX = x - canvas.offsetLeft - this.x;

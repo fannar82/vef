@@ -6,6 +6,8 @@ var Shape = Base.extend({
     this.y = y;
     console.log( "Shape constructor loaded." );
   },
+
+	iAm: "Undefined shape",
    
   getY: function() {
     return this.y;

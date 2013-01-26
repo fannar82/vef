@@ -33,4 +33,9 @@ $("#freehand").click(function() {
  	console.log( tool + " selected." );
 }); 
 
+$("#line").click(function() {
+ 	tool = "line";
+ 	console.log( tool + " selected." );
+});
+
 console.log( "Colors and tools functions loaded." );

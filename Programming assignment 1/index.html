@@ -22,6 +22,7 @@
 	<span id="rectangle">Rectangle</span>
 	<span id="circle">Circle</span>
 	<span id="freehand">Freehand</span>
+	<span id="line">Line</span>
 </div>
 
 <canvas id="drawing-board" width="800px" height="800px">
@@ -50,14 +51,17 @@
 		startY = e.pageY - this.offsetTop;
 
 		// Select shape to draw
-		if(tool == "rectangle"){
+		if ( tool == "rectangle" ){
 			currentShape = new Rectangle(startX, startY);
 		}
-		if(tool == "circle"){
+		if ( tool == "circle" ){
 			currentShape = new Circle(startX, startY);
 		}
-		if( tool == "freehand"){
+		if ( tool == "freehand" ){
 			currentShape = new Freehand( startX, startY );
+		}
+		if ( tool == "line" ){
+			currentShape = new Line( startX, startY );
 		}
 
 		// The mouse has been pressed
@@ -94,7 +98,6 @@
 <script type="text/javascript" src="circle.js"></script>
 <script type="text/javascript" src="rect.js"></script>
 <script type="text/javascript" src="freehand.js"></script>
-
-
+<script type="text/javascript" src="line.js"></script>
 </body>
 </html>
