@@ -13,12 +13,15 @@
 
 <p>Starts here</p>
 <div id="colorPicker">
+	<span id="black">Black</span>
 	<span id="blue">Blue</span>
 	<span id="red">Red</span>
+	<span id="green">Green</span>
 </div>
 <div id="toolPicker">
 	<span id="rectangle">Rectangle</span>
 	<span id="circle">Circle</span>
+	<span id="freehand">Freehand</span>
 </div>
 
 <canvas id="drawing-board" width="800px" height="800px">
@@ -37,6 +40,7 @@
 	var tool = "rectangle";
 	var color = "red";
 	var shapesArray = new Array();
+	var mouseIsDown = false;
 	
 	$(canvas).mousedown( function(e) {
 		// Set starting point (different shapes might
@@ -52,15 +56,36 @@
 		if(tool == "circle"){
 			currentShape = new Circle(startX, startY);
 		}
+		if( tool == "freehand"){
+			currentShape = new Freehand( startX, startY );
+		}
+
+		// The mouse has been pressed
+		mouseIsDown = true;
+	});
+
+	$(canvas).mousemove( function(e) {
+		if ( mouseIsDown == true ){
+			if( tool == "freehand" ) {
+				currentShape.setEnd( e.pageX, e.pageY );
+				currentShape.draw();
+	  		}
+	  	}
 	});
 	
 	$(canvas).mouseup( function(e) {
 		currentShape.setEnd( e.pageX, e.pageY );
 		currentShape.draw();
+
+		// Push the shape to the array for later usage
 		shapesArray.push(currentShape);
 		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
 		console.log( "List of all shapes: " + shapesArray.toString() );
+
+		// The mouse is no longer pressed
+		mouseIsDown = false;
 	});
+
 	console.log("Main loaded.");
 </script>
 
@@ -68,6 +93,7 @@
 <script type="text/javascript" src="shape.js"></script>
 <script type="text/javascript" src="circle.js"></script>
 <script type="text/javascript" src="rect.js"></script>
+<script type="text/javascript" src="freehand.js"></script>
 
 
 </body>

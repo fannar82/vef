@@ -6,9 +6,6 @@ var Shape = Base.extend({
     this.y = y;
     console.log( "Shape constructor loaded." );
   },
-
-  endX: 0,
-  endY: 0,
    
   getY: function() {
     return this.y;
