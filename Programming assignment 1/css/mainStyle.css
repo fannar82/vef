@@ -24,8 +24,10 @@ http://colorschemedesigner.com/#3Ob1Xmmw0w0w0 <- mæli með að kíkja á þessa
 
 /* DomElements */
 body{
-	background: #FAFCFF;
 	font-family: verdana, arial, sans;
+	background: #E2E2E2;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #E2E2E2), color-stop(.3, white), color-stop(.7, white), color-stop(1, #E2E2E2)); 
+	background: -moz-linear-gradient(top, 	#E2E2E2, white 30%, white 70%, #E2E2E2);
 }
 
 canvas{
@@ -41,12 +43,27 @@ canvas{
 
 
 /* -Id's */
-#head > h1{
-	font-family: helvetica;
-	font-size: 24pt;
+
+#content {
+	height:100%;
+	border-right: 1px solid #626467;
+	border-left:1px solid #626467;
+	background-color: #D0CEC3;
+}
+
+#head {
+
+	background: #2A3E59;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2A3E59), color-stop(.3, #2E4461), color-stop(.7, #2E4461), color-stop(1, #2A3E59)); 
+	background: -moz-linear-gradient(top, 	#2A3E59, white 30%, white 70%, #2A3E59);
+	background-color: #2A3E59;
+	/* little bit manipulation of 960.*/
+	padding-left: 21px;
+	margin-left: -1px;
 	text-align: center;
-	margin-top:20px;
-	margin-bottom:50px;
+}
+#head > img {
+	
 }
 
 #drawing-board, #drawing-board:active , #drawing-board:focus {
@@ -58,44 +75,41 @@ canvas{
 	margin:0em 0em;
 }
 #colorPicker {
-	background-color: #6699cc;
-	height: 30px;
+	background-color: yellow;
+	height: 40px;
 	
 
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
 }
-#colorPicker > ul > li {
-	display: inline;
-	list-style-type: none;	
-	margin-right: -5px;
+#colorPicker > p {
+	height:30px;
+	width:35px;
+	display:inline-block;
+	border:solid 1px gray;
+	margin-top:5px;
+	margin-left:5px;
 }
 
 #gapMaker{
 
 }
 #toolPicker{
-	background-color: #6699cc;
+	background-color: yellow;
+	height: 40px;
+}
+#toolPicker > p {
+	width:80px;
 	height: 30px;
+	display:inline-block;
+	border:solid 1px gray;
+	margin-top:5px;
+	margin-left:5px;
+	text-align: center;
+	padding-top:1px;
+}
 
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-}
-#toolPicker > span {
-	margin-left:10px;
-}
 
 #black{
 	background-color: black;
-	color:white;
 }
 #blue{
 	background-color: blue;
