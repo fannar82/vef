@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/mainStyle.css" />
 	<link rel="stylesheet" type="text/css" href="css/960.css" />
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<title>Fannar&Finnbjörn WEPO verkefni 1 WhatColorMePerfect!</title>
+	<title>Fannar&Finnbjörn WEPO verkefni 1 WhatSlapMeAroundAndColorMePerfect!</title>
 </head>
 <body>
 
@@ -18,28 +18,33 @@
 		<div id="head" class="grid_12">
 			<h1>MathWizWhiteBoard</h1>
 		</div>
-		<div id="colorPicker" class="grid_3">
-			<span id="black">Black</span>
-			<span id="blue">Blue</span>
-			<span id="red">Red</span>
-			<span id="green">Green</span>
+		<div id="colorPicker" class="grid_4">
+			<ul>
+				<li id="black">Black</li>
+				<li id="blue">Blue</li>
+				<li id="red">Red</li>
+				<li id="green">Green</li>
+			</ul>
 		</div>
-
-		<div id="toolPicker" class="grid_3">
+		<div id="toolPicker" class="grid_4">
 			<span id="rectangle">Rectangle</span>
 			<span id="circle">Circle</span>
 			<span id="freehand">Freehand</span>
 			<span id="line">Line</span>
 		</div>
-		<div id="eglagaþettaseinna.is" class="grid_6">
-			
+		<div id="gapMaker" class="grid_4">
+			&nbsp; 
 		</div>
+		
 
-		<canvas id="drawing-board" width="650px" height="400px">
-			<p>
-				Your browser does not support this. Please update your browser and enter 2013.
-			</p>
-		</canvas>
+		<!--Wrapping the canvas in a useless Div, to fix positioning error due to Grid960 -->
+		<div class="grid_12">
+			<canvas id="drawing-board" width="938px" height="400px">
+				<p>
+					Your browser does not support this. Please update your browser and enter 2013.
+				</p>
+			</canvas>
+		<div>
 	</div>
 
 <script type="text/javascript">
