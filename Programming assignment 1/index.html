@@ -5,36 +5,46 @@
 <!-- Programming assignment 1 -->
 <html>
 <head>
-<script type="text/javascript" src="js/Base.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-
+	<script type="text/javascript" src="js/Base.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/mainStyle.css" />
+	<title>Fannar&Finnbjörn WEPO verkefni 1 WhatColorMePerfect!</title>
 </head>
 <body>
 
-<p>Starts here</p>
-<div id="colorPicker">
-	<span id="black">Black</span>
-	<span id="blue">Blue</span>
-	<span id="red">Red</span>
-	<span id="green">Green</span>
-</div>
-<div id="toolPicker">
-	<span id="rectangle">Rectangle</span>
-	<span id="circle">Circle</span>
-	<span id="freehand">Freehand</span>
-	<span id="line">Line</span>
-</div>
+	<div id="content" class="grid_12">
+		<div id="head" class="grid_12">
+			<h1>MathWizWhiteBoard</h1>
+		</div>
+		<div id="colorPicker">
+			<span id="black">Black</span>
+			<span id="blue">Blue</span>
+			<span id="red">Red</span>
+			<span id="green">Green</span>
+		</div>
 
-<canvas id="drawing-board" width="800px" height="800px">
-	<p>
-		Your browser does not support this. Please update your browser and enter 2013.
-	</p>
-</canvas>
+		<div id="toolPicker">
+			<span id="rectangle">Rectangle</span>
+			<span id="circle">Circle</span>
+			<span id="freehand">Freehand</span>
+			<span id="line">Line</span>
+		</div>
 
-<p>Ends here</p>
+		<canvas id="drawing-board" width="650px" height="400px">
+			<p>
+				Your browser does not support this. Please update your browser and enter 2013.
+			</p>
+		</canvas>
+	</div>
 
 <script type="text/javascript">
-	console.log("Main loading.");
+	
+	// A Cursor fix for chrome:
+	document.onselectstart = function(){ 
+		return false; 
+	};
+	
+	//Main drawingboard functions.
 	var currentShape;
 	var canvas = document.getElementById("drawing-board");
 	var context = canvas.getContext("2d");
@@ -90,7 +100,6 @@
 		mouseIsDown = false;
 	});
 
-	console.log("Main loaded.");
 </script>
 
 <script type="text/javascript" src="js/color.js"></script>

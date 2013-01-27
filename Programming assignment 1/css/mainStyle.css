@@ -1,0 +1,9 @@
+
+#drawing-board, #drawing-board:active , #drawing-board:focus {
+	cursor: crosshair;
+}
+
+#drawing-board {
+
+	border:solid 1px black;
+}
