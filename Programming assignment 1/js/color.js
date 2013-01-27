@@ -38,4 +38,9 @@ $("#line").click(function() {
  	console.log( tool + " selected." );
 });
 
+$("#text").click(function() {
+ 	tool = "text";
+ 	console.log( tool + " selected." );
+}); 
+
 console.log( "Colors and tools functions loaded." );

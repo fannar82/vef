@@ -1,13 +1,14 @@
 console.log( "Shape class loading." );
 
 var Shape = Base.extend({
-  constructor: function( x,y ) {
+  constructor: function( x, y ) {
     this.x = x;
     this.y = y;
     console.log( "Shape constructor loaded." );
   },
 
-	iAm: "Undefined shape",
+	//iAm: "Lengend" ( http://www.imdb.com/title/tt0480249/ )
+  iAm: "Undefined shape",
    
   getY: function() {
     return this.y;
