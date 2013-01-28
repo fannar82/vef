@@ -29,7 +29,8 @@
 			<span id="freehand">Freehand</span>
 			<span id="line">Line</span>
 			<span id="text">Text</span>
-		
+			<span id="img">Image</span>
+			<span id="watermark">Watermark</span>
 		</div>
 
 		<!--Wrapping the canvas in a useless Div, to fix positioning error due to Grid960 -->
@@ -61,7 +62,7 @@
 	var mouseIsDown = false;
 
 	var textinput = $("#textinput");
-
+	
 	// Hide the textarea when page loads
 	textinput.hide();
 	
@@ -90,6 +91,13 @@
 			textinput.offset({ left: e.pageX, top: e.pageY });
 			textinput.focus();
 			currentShape = new Text( startX, startY );
+		}
+		if ( tool == "img" ){
+			currentShape = new Img( startX, startY );
+		}
+		if ( tool == "watermark" ){
+			currentShape = new Watermark( 0, 0 );
+			currentShape.draw();
 		}
 
 		// The mouse has been pressed
@@ -141,6 +149,7 @@
 		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
 		console.log( "List of all shapes: " + shapesArray.toString() );
 	}
+
 </script>
 
 <script type="text/javascript" src="js/color.js"></script>
@@ -150,5 +159,7 @@
 <script type="text/javascript" src="js/freehand.js"></script>
 <script type="text/javascript" src="js/line.js"></script>
 <script type="text/javascript" src="js/text.js"></script>
+<script type="text/javascript" src="js/img.js"></script>
+<script type="text/javascript" src="js/watermark.js"></script>
 </body>
 </html>

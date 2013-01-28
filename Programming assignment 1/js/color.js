@@ -43,4 +43,13 @@ $("#text").click(function() {
  	console.log( tool + " selected." );
 }); 
 
+$("#img").click(function() {
+ 	tool = "img";
+ 	console.log( tool + " selected." );
+});
+
+$("#watermark").click(function() {
+ 	tool = "watermark";
+ 	console.log( tool + " selected." );
+}); 
 console.log( "Colors and tools functions loaded." );
