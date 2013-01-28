@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- (c) Fannar Már Sigurðsson & Finnbjörn Þorvaldsson -->
-<!-- Háskólinn í Reykjavík -->
-<!-- WEPO, vor 2013-->
+<!-- Reykjavik University -->
+<!-- WEPO, spring 2013-->
 <!-- Programming assignment 1 -->
 <html>
 <head>
@@ -18,7 +18,7 @@
 		<div id="head" class="grid_12">
 			<img src="img/mathboard.png" />
 		</div>
-		<div id="colorPicker" class="grid_8">
+		<div id="colorPicker" class="grid_12">
 				
 			<p id="black">&nbsp;</p>
 			<p id="blue">&nbsp;</p>
@@ -31,11 +31,6 @@
 			<span id="text">Text</span>
 		
 		</div>
-		
-		<div id="gapMaker" class="grid_4">
-			&nbsp; 
-		</div>
-		
 
 		<!--Wrapping the canvas in a useless Div, to fix positioning error due to Grid960 -->
 		<div class="grid_12">
@@ -46,6 +41,8 @@
 			</canvas>
 		<div>
 	</div>
+
+<textarea rows="4" cols="50" id="textinput"></textarea>
 
 <script type="text/javascript">
 	
@@ -62,6 +59,11 @@
 	var color = "red";
 	var shapesArray = new Array();
 	var mouseIsDown = false;
+
+	var textinput = $("#textinput");
+
+	// Hide the textarea when page loads
+	textinput.hide();
 	
 	$(canvas).mousedown( function(e) {
 		// Set starting point (different shapes might
@@ -84,6 +86,9 @@
 			currentShape = new Line( startX, startY );
 		}
 		if ( tool == "text" ){
+			textinput.show();
+			textinput.offset({ left: e.pageX, top: e.pageY });
+			textinput.focus();
 			currentShape = new Text( startX, startY );
 		}
 
@@ -104,14 +109,38 @@
 		currentShape.setEnd( e.pageX, e.pageY );
 		currentShape.draw();
 
-		// Push the shape to the array for later usage
-		shapesArray.push(currentShape);
-		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
-		console.log( "List of all shapes: " + shapesArray.toString() );
+		// If this is text, then it should only be
+		// added when the textbox retrives an Enter,
+		// see "textinput.keypress" function.
+		if ( currentShape.iAm != "Text" ) {
+			addToShapesArray( currentShape );
+		};
 
 		// The mouse is no longer pressed
 		mouseIsDown = false;
 	});
+
+	// Listener to textinput
+	textinput.keypress( function(e) {
+
+		// If Enter is pressed, hide the textarea again
+		// and draw it's contents to the canvas.
+    	if(e.keyCode == 13 && !e.shiftKey){
+    		currentShape.drawText( textinput.val() );
+    		textinput.hide();
+    		textinput.val(''); // Clear textarea for next use
+    		console.log("Enter has been pressed.");
+
+    		addToShapesArray( currentShape );
+      	}
+	});
+
+	function addToShapesArray ( shape ) {
+		// Push the shape to the array for later usage
+		shapesArray.push(currentShape);
+		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
+		console.log( "List of all shapes: " + shapesArray.toString() );
+	}
 </script>
 
 <script type="text/javascript" src="js/color.js"></script>

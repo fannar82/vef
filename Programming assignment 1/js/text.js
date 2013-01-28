@@ -17,9 +17,13 @@ var Text = Shape.extend({
 	},
 
 	draw: function() {
-		context.fillStyle = "blue";	
+		// Deliberatly empty.
+	},
+
+	drawText: function ( text ) {
+		context.fillStyle = color;	
 		context.font = "bold 16px Arial";
-		context.fillText("Zibri", this.x, this.y);
+		context.fillText(text, this.x, this.y);
 	}
 });
 console.log( "Text class loaded." );
