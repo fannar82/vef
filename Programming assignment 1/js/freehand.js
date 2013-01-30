@@ -11,15 +11,15 @@ var Freehand = Shape.extend({
 	allX: new Array(),
 	allY: new Array(),
 	  
-	setEnd: function ( x, y ) {
-		endX = x - canvas.offsetLeft;
-		endY = y - canvas.offsetTop;
-	},
+	// setEnd: function ( x, y ) {
+	// 	endX = x - canvas.offsetLeft;
+	// 	endY = y - canvas.offsetTop;
+	// },
 
 	draw: function() {
-    	this.strokeLine( endX, endY );
-    	this.allX.push(endX);
-    	this.allY.push(endY);
+    	this.strokeLine( this.getEndX() , this.getEndY() );
+    	this.allX.push( this.getEndX() );
+    	this.allY.push( this.getEndY() );
 	},
 
 	redraw: function () {

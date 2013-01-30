@@ -9,13 +9,13 @@ var Circle = Shape.extend({
 	//iAm: "Circle", // Delete at next code cleanup.
 	radius: 0,
 
-	setEnd: function ( x, y ) {
-		endX = x - canvas.offsetLeft;
-		endY = y - canvas.offsetTop;
-	},
+	//setEnd: function ( x, y ) {
+	//	endX = x - canvas.offsetLeft;
+	//	endY = y - canvas.offsetTop;
+	//},
 
 	draw: function() {
-		this.radius = Math.sqrt( Math.pow((this.x-endX),2) + Math.pow((this.y-endY),2) );
+		this.radius = Math.sqrt( Math.pow((this.x-this.getEndX()),2) + Math.pow((this.y-this.getEndY()),2) );
 		this.redraw();
 	},
 

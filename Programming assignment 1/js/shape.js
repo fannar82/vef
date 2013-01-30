@@ -10,6 +10,8 @@ var Shape = Base.extend({
 
 	//iAm: "Lengend" ( http://www.imdb.com/title/tt0480249/ )
   iAm: "Undefined shape",
+  endX: 0,
+  endY: 0,
    
   getY: function() {
     return this.y;
@@ -18,9 +20,20 @@ var Shape = Base.extend({
   getX: function() {
     return this.x;
   },
+
+  getEndX: function() {
+    return this.endX;
+  },
+
+  getEndY: function() {
+    return this.endY;
+  },
   
   setEnd: function ( x, y ) {
-	console.log( "SetEnd Not Implemented In Derived Class");
+    this.endX = x - canvas.offsetLeft;
+    this.endY = y - canvas.offsetTop;
+  
+   // console.log( "SetEnd Not Implemented In Derived Class");
   },
 
   draw: function() {
