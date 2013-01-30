@@ -1,9 +1,10 @@
 console.log( "Shape class loading." );
 
 var Shape = Base.extend({
-  constructor: function( x, y ) {
+  constructor: function( x, y, selectedColor ) {
     this.x = x;
     this.y = y;
+    this.myColor = selectedColor,
     console.log( "Shape constructor loaded." );
   },
 

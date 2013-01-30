@@ -30,7 +30,8 @@
 			<span id="line">Line</span>
 			<span id="text">Text</span>
 			<span id="img">Image</span>
-			<span id="watermark">Watermark</span>
+			<!--<span id="watermark">Watermark</span>-->
+			<span id="undo">Undo</span>
 		</div>
 
 		<!--Wrapping the canvas in a useless Div, to fix positioning error due to Grid960 -->
@@ -59,9 +60,11 @@
 	var tool = "rectangle";
 	var color = "red";
 	var shapesArray = new Array();
+	var shapesRedo = new Array();
 	var mouseIsDown = false;
 
 	var textinput = $("#textinput");
+	var undo = $("#undo");
 	
 	// Hide the textarea when page loads
 	textinput.hide();
@@ -143,6 +146,20 @@
       	}
 	});
 
+	$(undo).click( function() {
+		makeUndo();
+	});
+
+	$(document).keypress( function(e) {
+		// If the textinput object is not loaded and 
+		// Ctrl + Z is pressed - undo last action.
+		if ( tool != "text" ) {
+			if( e.which === 26 && e.ctrlKey ){
+				makeUndo( );
+			}
+		}
+	});
+
 	function addToShapesArray ( shape ) {
 		// Push the shape to the array for later usage
 		shapesArray.push(currentShape);
@@ -150,6 +167,14 @@
 		console.log( "List of all shapes: " + shapesArray.toString() );
 	}
 
+	function makeUndo () {
+		console.log("Starting undo.");
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		redraw(shapesArray);
+
+		console.log("Undo done.");
+	}
 </script>
 
 <script type="text/javascript" src="js/color.js"></script>
@@ -161,5 +186,6 @@
 <script type="text/javascript" src="js/text.js"></script>
 <script type="text/javascript" src="js/img.js"></script>
 <script type="text/javascript" src="js/watermark.js"></script>
+<script type="text/javascript" src="js/redraw.js"></script>
 </body>
 </html>
