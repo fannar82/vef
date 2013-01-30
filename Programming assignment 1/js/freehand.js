@@ -29,7 +29,7 @@ var Freehand = Shape.extend({
 		for (var i = 0; i < length; i++) {
 			this.strokeLine( this.allX[i], this.allY[i] );
 			//console.log( "currPoint: " + currPoint );
-			console.log( "currX: " + this.allX[i] + ", currY: " +  this.allY[i] );
+			//console.log( "currX: " + this.allX[i] + ", currY: " +  this.allY[i] );
 		}
 	},
 
