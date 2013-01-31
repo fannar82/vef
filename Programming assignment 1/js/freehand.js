@@ -8,13 +8,10 @@ var Freehand = Shape.extend({
 		console.log( "Freehand constructor loaded." );
 	},
 
-  
-	
 	arrayX: function () {
 		this.allX.push( this.getEndX() );
     	this.allY.push( this.getEndY() );
 	},
-
 
 	draw: function () {
 		var length = this.allX.length;

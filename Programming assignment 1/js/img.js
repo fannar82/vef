@@ -11,6 +11,5 @@ var Img = Shape.extend({
 		img.src = 'img/hr.jpg';
 		context.drawImage(img, this.getX(), this.getY() );
 	}
-
 });
 console.log( "Image class loaded." );

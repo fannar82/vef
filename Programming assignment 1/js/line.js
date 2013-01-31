@@ -14,6 +14,5 @@ var Line = Shape.extend({
 		context.stroke();
     	context.closePath();
 	}
-
 });
 console.log( "Line class loaded." );
