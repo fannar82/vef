@@ -111,6 +111,7 @@
 		if ( mouseIsDown == true ){
 			if( tool == "freehand" ) {
 				currentShape.setEnd( e.pageX, e.pageY );
+				currentShape.arrayX();
 				currentShape.draw();
 	  		}
 	  	}
@@ -129,6 +130,7 @@
 
 		// The mouse is no longer pressed
 		mouseIsDown = false;
+
 	});
 
 	// Listener to textinput

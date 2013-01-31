@@ -8,8 +8,6 @@ var Shape = Base.extend({
     console.log( "Shape constructor loaded." );
   },
 
-	//iAm: "Lengend" ( http://www.imdb.com/title/tt0480249/ )
-  iAm: "Undefined shape",
   endX: 0,
   endY: 0,
    
@@ -32,8 +30,6 @@ var Shape = Base.extend({
   setEnd: function ( x, y ) {
     this.endX = x - canvas.offsetLeft;
     this.endY = y - canvas.offsetTop;
-  
-   // console.log( "SetEnd Not Implemented In Derived Class");
   },
 
   draw: function() {

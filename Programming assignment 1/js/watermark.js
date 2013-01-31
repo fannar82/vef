@@ -3,16 +3,7 @@ console.log( "Watermark class loading." );
 var Watermark = Shape.extend({
 	constructor: function( x, y ) {
 		this.base( x, y );
-
-		context.beginPath();
-
 		console.log( "Watermark constructor loaded." );
-	},
-
-	iAm: "Watermark",
-	  
-	setEnd: function ( x, y ) {
-		// Intentionally left blank.
 	},
 
 	draw: function() {

@@ -6,7 +6,11 @@ function redraw ( shapes ) {
 	for (var i = 0; i < length; i++) {
   		console.log("Redrawing shape number" + (i) );
   		shape = shapes[i];
-  		shape.redraw();
+  		shape.draw();
+
+  		if (shape.isText == true) {	
+  			shape.drawText(""); 
+  		}; 
 	}
 	console.log("Redrawn.");
 }

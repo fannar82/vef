@@ -5,23 +5,18 @@ var Circle = Shape.extend({
 	    this.base( x, y, color );
 	    console.log( "Circle constructor loaded." );
 	},
-	 
-	//iAm: "Circle", // Delete at next code cleanup.
+
 	radius: 0,
 
-	//setEnd: function ( x, y ) {
-	//	endX = x - canvas.offsetLeft;
-	//	endY = y - canvas.offsetTop;
-	//},
-
-	draw: function() {
+	setEnd: function ( x, y ) {
+		this.endX = x - canvas.offsetLeft;
+    	this.endY = y - canvas.offsetTop;
 		this.radius = Math.sqrt( Math.pow((this.x-this.getEndX()),2) + Math.pow((this.y-this.getEndY()),2) );
-		this.redraw();
 	},
 
-	redraw: function() {
+	draw: function() {
 		context.beginPath();
-		context.arc(this.x, this.y, this.radius, 0 , 2 * Math.PI, false);
+		context.arc(this.getX(), this.getY(), this.radius, 0 , 2 * Math.PI, false);
 		context.strokeStyle = this.myColor;
 		context.closePath();
 		context.stroke();

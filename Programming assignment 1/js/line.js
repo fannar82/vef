@@ -6,21 +6,8 @@ var Line = Shape.extend({
 		console.log( "Line constructor loaded." );
 	},
 
-	//iAm: "Line",
-	 // bendX: 0,
-	 // bendY: 0,
-
-	// setEnd: function ( x, y ) {
-	// 	endX = x - canvas.offsetLeft;
-	// 	endY = y - canvas.offsetTop;
-	// },
-
-	draw: function() {
-		this.redraw();
-	},
-	
-	redraw: function () {
-		context.strokeStyle = color;
+	draw: function () {
+		context.strokeStyle = this.myColor;
 		context.beginPath();
 		context.moveTo( this.getX() , this.getY() );
     	context.lineTo( this.getEndX() , this.getEndY() );

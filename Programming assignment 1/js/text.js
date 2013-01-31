@@ -2,28 +2,27 @@ console.log( "Text class loading." );
 
 var Text = Shape.extend({
 	constructor: function( x, y ) {
-		this.base( x, y );
-
-		context.beginPath();
-
+		this.base( x, y, color );
 		console.log( "Text constructor loaded." );
 	},
 
-	iAm: "Text",
-	  
-	setEnd: function ( x, y ) {
-		endX = x - canvas.offsetLeft;
-		endY = y - canvas.offsetTop;
-	},
+	isText: true,
+	message: "",
 
 	draw: function() {
 		// Deliberatly empty.
 	},
 
 	drawText: function ( text ) {
-		context.fillStyle = color;	
+		if (text == "") {
+			text = this.message;
+		}
+		else {
+			this.message = text ;	
+		}
+		context.fillStyle = this.myColor;	
 		context.font = "bold 16px Arial";
-		context.fillText(text, this.x, this.y);
+		context.fillText(text, this.getX(), this.getY() );
 	}
 });
 console.log( "Text class loaded." );
