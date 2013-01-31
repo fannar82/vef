@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/mainStyle.css" />
 	<link rel="stylesheet" type="text/css" href="css/960.css" />
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<title>Fannar&Finnbjörn WEPO verkefni 1 WhatSlapMeAroundAndColorMePerfect!</title>
+	<title>Fannar &amp; Finnbj&ouml;rn WEPO verkefni 1 WhatSlapMeAroundAndColorMePerfect!</title>
 </head>
 <body>
 
@@ -19,7 +19,6 @@
 			<img src="img/mathboard.png" />
 		</div>
 		<div id="colorPicker" class="grid_12">
-				
 			<p id="black">&nbsp;</p>
 			<p id="blue">&nbsp;</p>
 			<p id="red">&nbsp;</p>
@@ -34,11 +33,13 @@
 			<span id="undo">Undo</span>
 		</div>
 
-		<!--Wrapping the canvas in a useless Div, to fix positioning error due to Grid960 -->
+
+		<!--Wrapping the canvas in a useless DIV,
+		    to fix positioning error due to Grid960 -->
 		<div class="grid_12">
 			<canvas id="drawing-board" width="938px" height="400px">
 				<p>
-					Your browser does not support this. Please update your browser and enter 2013.
+					Your browser does not support this. Please update your browser and enter the year 2013.
 				</p>
 			</canvas>
 		<div>
@@ -76,35 +77,41 @@
 		startY = e.pageY - this.offsetTop;
 
 		// Select shape to draw
-		if ( tool == "rectangle" ){
-			currentShape = new Rectangle(startX, startY);
-		}
-		if ( tool == "circle" ){
-			currentShape = new Circle(startX, startY);
-		}
-		if ( tool == "freehand" ){
-			currentShape = new Freehand( startX, startY );
-		}
-		if ( tool == "line" ){
-			currentShape = new Line( startX, startY );
-		}
-		if ( tool == "text" ){
-			textinput.show();
-			textinput.offset({ left: e.pageX, top: e.pageY });
-			textinput.focus();
-			currentShape = new Text( startX, startY );
-		}
-		if ( tool == "img" ){
-			currentShape = new Img( startX, startY );
-		}
-		if ( tool == "watermark" ){
-			currentShape = new Watermark( 0, 0 );
-			currentShape.draw();
+		switch (tool)
+		{
+			case "rectangle":
+				currentShape = new Rectangle( startX, startY );
+				break;
+			case "circle":
+				currentShape = new Circle( startX, startY );
+				break;
+			case "freehand":
+				currentShape = new Freehand( startX, startY );
+				break;
+			case "line":
+				currentShape = new Line( startX, startY );
+				break;
+			case "text":
+				textinput.show();
+				textinput.offset({ left: e.pageX, top: e.pageY });
+				textinput.focus();
+				currentShape = new Text( startX, startY );
+				break;
+			case "img":
+				currentShape = new Img( startX, startY );
+				break;
+			case "watermark":
+				currentShape = new Watermark( 0, 0 );
+				currentShape.draw();
+				break;
 		}
 
 		// The mouse has been pressed
 		mouseIsDown = true;
 	});
+
+  	mouseCurrX = null;
+  	mouseCurrY = null;
 
 	$(canvas).mousemove( function(e) {
 		if ( mouseIsDown == true ){
@@ -114,15 +121,28 @@
 				currentShape.draw();
 	  		}
 	  	}
+
+	  	if ( shapesArray.length > 0 && e.shiftKey ) {
+  			var length = shapesArray.length;
+			for (var i = 0; i < length; i++) {
+		  		shapesArray[i].move( e.pageX - this.mouseCurrX, e.pageY - this.mouseCurrY );
+			}
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			redraw(shapesArray);
+	  	}
+
+	  	// Position the mouse for next move.
+	  	this.mouseCurrX = e.pageX;
+	  	this.mouseCurrY = e.pageY;
 	});
 	
 	$(canvas).mouseup( function(e) {
 		currentShape.setEnd( e.pageX, e.pageY );
 		currentShape.draw();
 
-		// // If this is text, then it should only be
-		// // added when the textbox retrives an Enter,
-		// // see "textinput.keypress" function.
+		// If this is text, then it should only be
+		// added when the textbox retrives an Enter,
+		// see "textinput.keypress" function.
 		if ( currentShape.iAm != "Text" ) {
 			addToShapesArray( currentShape );
 		};
@@ -130,6 +150,12 @@
 		// The mouse is no longer pressed
 		mouseIsDown = false;
 
+	});
+
+	$(canvas).click( function(e) {
+		if ( e.ctrlKey && e.keyCode == 13 ){
+
+		}
 	});
 
 	// Listener to textinput
@@ -172,6 +198,7 @@
 		console.log("Starting undo.");
 
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		shapesRedo.push(shapesArray.pop());
 		redraw(shapesArray);
 
 		console.log("Undo done.");
@@ -187,5 +214,6 @@
 <script type="text/javascript" src="js/img.js"></script>
 <script type="text/javascript" src="js/watermark.js"></script>
 <script type="text/javascript" src="js/redraw.js"></script>
+<script type="text/javascript" src="js/Point.js"></script>
 </body>
 </html>

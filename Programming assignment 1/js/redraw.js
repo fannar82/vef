@@ -1,14 +1,14 @@
 function redraw ( shapes ) {
 	console.log("Starting to redraw.");
-	var length = shapes.length - 1,
+	var length = shapes.length,
     shape = null;
-	shapesRedo.push(shapes.pop());
 	for (var i = 0; i < length; i++) {
   		console.log("Redrawing shape number" + (i) );
   		shape = shapes[i];
   		shape.draw();
 
-  		if (shape.isText == true) {	
+  		// Special for text
+      if (shape.isText == true) {	
   			shape.drawText(""); 
   		}; 
 	}

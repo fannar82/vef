@@ -6,6 +6,7 @@ var Line = Shape.extend({
 		console.log( "Line constructor loaded." );
 	},
 
+	// Override
 	draw: function () {
 		context.strokeStyle = this.myColor;
 		context.beginPath();
