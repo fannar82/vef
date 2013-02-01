@@ -29,7 +29,7 @@
 			<span id="line">Line</span>
 			<span id="text">Text</span>
 			<span id="img">Image</span>
-			<!--<span id="watermark">Watermark</span>-->
+			<span id="watermark">Watermark</span>
 			<span id="undo">Undo</span>
 		</div>
 
@@ -58,13 +58,15 @@
 	var currentShape;
 	var canvas = document.getElementById("drawing-board");
 	var context = canvas.getContext("2d");
-	var tool = "rectangle";
-	var color = "red";
-	var shapesArray = new Array();
-	var shapesRedo = new Array();
-	var mouseIsDown = false;
-	var textinput = $("#textinput");
-	var undo = $("#undo");
+	var tool = "rectangle"; // Start up with this shape.
+	var color = "red"; // Start up with this color.
+	var shapesArray = new Array(); // Objects put here and removed on undo.
+	var shapesRedo = new Array(); // Undo actions sent here.
+	var mouseIsDown = false; // For mouse movements gestures.
+	var textinput = $("#textinput"); // Fetch the text input field.
+	var undo = $("#undo"); // Fetch the undo button.
+  	var mouseCurrX = null; // For moving objects on canvas.
+  	var mouseCurrY = null; // For moving objects on canvas.
 	
 	// Hide the textarea when page loads
 	textinput.hide();
@@ -102,16 +104,12 @@
 				break;
 			case "watermark":
 				currentShape = new Watermark( 0, 0 );
-				currentShape.draw();
 				break;
 		}
 
 		// The mouse has been pressed
 		mouseIsDown = true;
 	});
-
-  	mouseCurrX = null;
-  	mouseCurrY = null;
 
 	$(canvas).mousemove( function(e) {
 		if ( mouseIsDown == true ){
@@ -203,6 +201,8 @@
 
 		console.log("Undo done.");
 	}
+
+
 </script>
 <script type="text/javascript" src="js/color.js"></script>
 <script type="text/javascript" src="js/shape.js"></script>

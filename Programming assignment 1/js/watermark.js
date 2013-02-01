@@ -8,12 +8,14 @@ var Watermark = Shape.extend({
 
 	draw: function() {
 		console.log("Adding watermarkRu");
-		watermarkRu = new Image();
+		context.save();
+		var watermarkRu = new Image();
 		watermarkRu.src = 'img/hr.jpg';
 		context.globalAlpha = 0.2;
 		posLeft = canvas.width - watermarkRu.width;
 		context.drawImage(watermarkRu, 0, 0);	
-		context.globalAlpha = 1;
+		//context.globalAlpha = 1;
+		context.restore();
 		console.log("Added watermarkRu");
 	}
 });
