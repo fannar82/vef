@@ -49,7 +49,11 @@ var Shape = Base.extend({
       this.endX = this.endX + x;
       this.endY = this.endY + y;
       console.log( "Shape object moved." );
+    },
+
+    select: function () {
+      console.log( "Select not implemented in derived class." );
     }
-});
+  });
 
 console.log( "Shape class loaded." );

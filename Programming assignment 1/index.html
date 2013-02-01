@@ -49,7 +49,7 @@
 
 <script type="text/javascript">
 	
-	// A Cursor fix for chrome:
+	// A Cursor fix for Chrome:
 	document.onselectstart = function(){ 
 		return false; 
 	};
@@ -67,48 +67,65 @@
 	var undo = $("#undo"); // Fetch the undo button.
   	var mouseCurrX = null; // For moving objects on canvas.
   	var mouseCurrY = null; // For moving objects on canvas.
+  	var margin = 3; // Margin for select.
 	
 	// Hide the textarea when page loads
 	textinput.hide();
 	
 	$(canvas).mousedown( function(e) {
-		// Set starting point (different shapes might
-		// treat "starting point" differently)
-		// StartX,Y fixes browser compability
-		startX = e.pageX - this.offsetLeft;
-		startY = e.pageY - this.offsetTop;
+		// If Ctrl is pressed, selection is in progress
+		// and no shape sholud be drawn.
+		if ( e.ctrlKey ) {
+			// 1. Finna hvort það sé hlutur í arrayinu sem
+			//    er í sama punkti. Þ.e. renna í gegnum arrayið
+			//    í öfuga átt og athugað hvort stakið sé á
+			//    þeim punkti.
 
-		// Select shape to draw
-		switch (tool)
-		{
-			case "rectangle":
-				currentShape = new Rectangle( startX, startY );
-				break;
-			case "circle":
-				currentShape = new Circle( startX, startY );
-				break;
-			case "freehand":
-				currentShape = new Freehand( startX, startY );
-				break;
-			case "line":
-				currentShape = new Line( startX, startY );
-				break;
-			case "text":
-				textinput.show();
-				textinput.offset({ left: e.pageX, top: e.pageY });
-				textinput.focus();
-				currentShape = new Text( startX, startY );
-				break;
-			case "img":
-				currentShape = new Img( startX, startY );
-				break;
-			case "watermark":
-				currentShape = new Watermark( 0, 0 );
-				break;
+			// Í freehand, það sem er klikkað færðu X og
+			// Y gildi sem þú getur borið saman við X og
+			// Y gildin sem eru í Point array
+			for (var i = 0; i < shapesArray.length; i++) {
+		  		shapesArray[i].select( e.pageX, e.pageY, margin );
+			}
 		}
+		else {
+			// Set starting point (different shapes might
+			// treat "starting point" differently)
+			// StartX,Y fixes browser compability
+			startX = e.pageX - this.offsetLeft;
+			startY = e.pageY - this.offsetTop;
 
-		// The mouse has been pressed
-		mouseIsDown = true;
+			// Select shape to draw
+			switch (tool) {
+				case "rectangle":
+					currentShape = new Rectangle( startX, startY );
+					break;
+				case "circle":
+					currentShape = new Circle( startX, startY );
+					break;
+				case "freehand":
+					currentShape = new Freehand( startX, startY );
+					break;
+				case "line":
+					currentShape = new Line( startX, startY );
+					break;
+				case "text":
+					textinput.show();
+					textinput.offset({ left: e.pageX, top: e.pageY });
+					textinput.focus();
+					currentShape = new Text( startX, startY );
+					break;
+				case "img":
+					currentShape = new Img( startX, startY );
+					break;
+				case "watermark":
+					currentShape = new Watermark( 0, 0 );
+					break;
+			}
+
+			// The mouse has been pressed
+			mouseIsDown = true;
+		}
 	});
 
 	$(canvas).mousemove( function(e) {
@@ -120,10 +137,14 @@
 	  		}
 	  	}
 
+	  	// Move selected objects
 	  	if ( shapesArray.length > 0 && e.shiftKey ) {
   			var length = shapesArray.length;
 			for (var i = 0; i < length; i++) {
-		  		shapesArray[i].move( e.pageX - this.mouseCurrX, e.pageY - this.mouseCurrY );
+				if ( shapesArray[i].selected == true )
+				{
+		  			shapesArray[i].move( e.pageX - this.mouseCurrX, e.pageY - this.mouseCurrY );
+		  		}
 			}
 			context.clearRect(0, 0, canvas.width, canvas.height);
 			redraw(shapesArray);
@@ -135,25 +156,23 @@
 	});
 	
 	$(canvas).mouseup( function(e) {
-		currentShape.setEnd( e.pageX, e.pageY );
-		currentShape.draw();
+		// If Ctrl is pressed, selection is in progress
+		// and no shape sholud be drawn.
+		if ( !e.ctrlKey ) {
+			currentShape.setEnd( e.pageX, e.pageY );
+			currentShape.draw();
 
-		// If this is text, then it should only be
-		// added when the textbox retrives an Enter,
-		// see "textinput.keypress" function.
-		if ( currentShape.iAm != "Text" ) {
-			addToShapesArray( currentShape );
-		};
+			// If this is text, then it should only be
+			// added when the textbox retrives an Enter,
+			// see "textinput.keypress" function.
+			if ( currentShape.iAm != "Text" ) {
+				addToShapesArray( currentShape );
+			};
 
-		// The mouse is no longer pressed
-		mouseIsDown = false;
-
-	});
-
-	$(canvas).click( function(e) {
-		if ( e.ctrlKey && e.keyCode == 13 ){
-
+			// The mouse is no longer pressed
+			mouseIsDown = false;
 		}
+
 	});
 
 	// Listener to textinput
