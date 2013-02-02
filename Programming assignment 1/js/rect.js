@@ -12,14 +12,6 @@ var Rectangle = Shape.extend({
 	},
 
     select: function ( x, y, margin ) {
-    	//console.log( " I'm trying to select! ... " + this.getX() + " " + this.getEndX() );
-    	// Ef þessi skilyrði eru uppfyllt:
-
-    	// ef e.x = this.x þá athuga hvort innan start-y marka
-    	// ef e.y = this.y þá athuga hvort innan start-x marka
-    	// ef e.x = this.getX() þá athuga hvort innan end-y marka
-    	// ef e.y = this.getX() þá athuga hvort innan end-x marka
-
     	// Fix position from last coordinates of the mouse
     	// so the object moves with the mouse.
     	x = x - canvas.offsetLeft;

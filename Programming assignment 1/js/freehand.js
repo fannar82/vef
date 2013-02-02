@@ -30,12 +30,29 @@ var Freehand = Shape.extend({
 	// Override
 	move: function ( x, y ) {
 		console.log( "Moving Freehand object." );
-		var length = this.points.length;
-		for (var i = 0; i < length; i++) {
+		for (var i = 0; i < this.points.length; i++) {
 			this.points[i].x = this.points[i].x + x;
 			this.points[i].y = this.points[i].y + y;
 		}
     	console.log( "Freehand object moved." );
-  	}
+  	},
+
+    select: function ( x, y, margin ) {
+    	x = x - canvas.offsetLeft;
+    	y = y - canvas.offsetTop;
+
+		// THIS CODE WILL NOT WORK
+		// It only ames at the points, not the lines between the points.
+		// Needs fixing asap. Propably will use same technich as Line.
+		// for (var i = 0; i < this.points.length; i++) {
+		// 	if ( this.points[i].x > x+margin && this.points[i].x < x-margin
+		// 		&& this.points[i].y > y+margin && this.points[i].y < y-margin )
+		// 	{
+		// 		console.log( "Freehand selected." );
+		// 		this.selected = true;
+		// 		break;
+		// 	}
+		// }
+    }
 });
 console.log( "Freehand class loaded." );

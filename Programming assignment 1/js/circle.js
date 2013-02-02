@@ -20,7 +20,20 @@ var Circle = Shape.extend({
 		context.strokeStyle = this.myColor;
 		context.closePath();
 		context.stroke();
-	}
+	},
+
+    select: function ( x, y, margin ) {
+
+    	x = x - canvas.offsetLeft;
+    	y = y - canvas.offsetTop;
+		var distance = Math.sqrt( Math.pow((x-this.getX()),2) + Math.pow((y-this.getY()),2) );
+
+    	if ( distance < this.radius+margin && distance > this.radius-margin )
+    	{
+			console.log( "Circle selected." );
+			this.selected = true;
+    	}
+    }
 });
 
 console.log( "Circle class loaded." );
