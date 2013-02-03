@@ -66,6 +66,7 @@ $("#save").click(function() {
 });
 
 $("#load").click(function() {
+ 	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
  	var saveboxObj = $("#saveBox").val();
  	wb.whiteBoards[wb.currWB] = loadDrawing(saveboxObj, wb.canvas);
  	redraw( wb.whiteBoards[wb.currWB] );
