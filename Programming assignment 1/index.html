@@ -55,7 +55,8 @@
 	};
 	
 	//Main drawingboard functions.
-	var currentShape;
+	var wb = function(){}; // "Whiteboard", the global guy.
+		wb.currentShape;
 	var canvas = document.getElementById("drawing-board");
 	var context = canvas.getContext("2d");
 	var tool = "rectangle"; // Start up with this shape.
@@ -67,7 +68,7 @@
 	var undo = $("#undo"); // Fetch the undo button.
   	var mouseCurrX = null; // For moving objects on canvas.
   	var mouseCurrY = null; // For moving objects on canvas.
-  	var margin = 3; // Margin for select.
+  	var margin = 10; // Margin for select.
 	
 	// Hide the textarea when page loads
 	textinput.hide();
@@ -96,30 +97,32 @@
 			startY = e.pageY - this.offsetTop;
 
 			// Select shape to draw
+			// Crockford hatest it,
+			// but we love it ;-)
 			switch (tool) {
 				case "rectangle":
-					currentShape = new Rectangle( startX, startY );
+					wb.currentShape = new Rectangle( startX, startY );
 					break;
 				case "circle":
-					currentShape = new Circle( startX, startY );
+					wb.currentShape = new Circle( startX, startY );
 					break;
 				case "freehand":
-					currentShape = new Freehand( startX, startY );
+					wb.currentShape = new Freehand( startX, startY );
 					break;
 				case "line":
-					currentShape = new Line( startX, startY );
+					wb.currentShape = new Line( startX, startY );
 					break;
 				case "text":
 					textinput.show();
 					textinput.offset({ left: e.pageX, top: e.pageY });
 					textinput.focus();
-					currentShape = new Text( startX, startY );
+					wb.currentShape = new Text( startX, startY );
 					break;
 				case "img":
-					currentShape = new Img( startX, startY );
+					wb.currentShape = new Img( startX, startY );
 					break;
 				case "watermark":
-					currentShape = new Watermark( 0, 0 );
+					wb.currentShape = new Watermark( 0, 0 );
 					break;
 			}
 
@@ -131,16 +134,15 @@
 	$(canvas).mousemove( function(e) {
 		if ( mouseIsDown == true ){
 			if( tool == "freehand" ) {
-				currentShape.setEnd( e.pageX, e.pageY );
-				currentShape.arrayX();
-				currentShape.draw();
+				wb.currentShape.setEnd( e.pageX, e.pageY );
+				wb.currentShape.arrayX();
+				wb.currentShape.draw();
 	  		}
 	  	}
 
 	  	// Move selected objects
 	  	if ( shapesArray.length > 0 && e.shiftKey ) {
-  			var length = shapesArray.length;
-			for (var i = 0; i < length; i++) {
+			for (var i = 0; i < shapesArray.length; i++) {
 				if ( shapesArray[i].selected == true )
 				{
 		  			shapesArray[i].move( e.pageX - this.mouseCurrX, e.pageY - this.mouseCurrY );
@@ -159,14 +161,14 @@
 		// If Ctrl is pressed, selection is in progress
 		// and no shape sholud be drawn.
 		if ( !e.ctrlKey ) {
-			currentShape.setEnd( e.pageX, e.pageY );
-			currentShape.draw();
+			wb.currentShape.setEnd( e.pageX, e.pageY );
+			wb.currentShape.draw();
 
 			// If this is text, then it should only be
 			// added when the textbox retrives an Enter,
 			// see "textinput.keypress" function.
-			if ( currentShape.iAm != "Text" ) {
-				addToShapesArray( currentShape );
+			if ( wb.currentShape.iAm != "Text" ) {
+				addToShapesArray( wb.currentShape );
 			};
 
 			// The mouse is no longer pressed
@@ -181,12 +183,12 @@
 		// If Enter is pressed, hide the textarea again
 		// and draw it's contents to the canvas.
     	if(e.keyCode == 13 && !e.shiftKey){
-    		currentShape.drawText( textinput.val() );
+    		wb.currentShape.drawText( textinput.val() );
     		textinput.hide();
     		textinput.val(''); // Clear textarea for next use
     		console.log("Enter has been pressed.");
 
-    		addToShapesArray( currentShape );
+    		addToShapesArray( wb.currentShape );
       	}
 	});
 
@@ -206,7 +208,7 @@
 
 	function addToShapesArray ( shape ) {
 		// Push the shape to the array for later usage
-		shapesArray.push(currentShape);
+		shapesArray.push(wb.currentShape);
 		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
 		console.log( "List of all shapes: " + shapesArray.toString() );
 	}

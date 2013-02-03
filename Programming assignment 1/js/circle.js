@@ -31,7 +31,7 @@ var Circle = Shape.extend({
     	if ( distance < this.radius+margin && distance > this.radius-margin )
     	{
 			console.log( "Circle selected." );
-			this.selected = true;
+			this.selected = ( !this.selected );
     	}
     }
 });

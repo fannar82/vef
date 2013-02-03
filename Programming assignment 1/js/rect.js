@@ -21,8 +21,8 @@ var Rectangle = Shape.extend({
     	if ( x < this.getX() + margin && x > this.getX() - margin )
     	{
     		if ( y > this.getY() && y < this.getEndY() ) {
-    			console.log( "Right side of Rectangle." );
-    			this.selected = true;
+    			console.log( "Left side of Rectangle." );
+                this.selected = (!this.selected);
     		}
     	}
     	
@@ -30,8 +30,8 @@ var Rectangle = Shape.extend({
     	if ( x > this.getEndX() - margin && x < this.getEndX() + margin )
     	{
     		if ( y > this.getY() && y < this.getEndY() ) {
-    			console.log( "Left side of Rectangle." );
-    			this.selected = true;
+    			console.log( "Right side of Rectangle." );
+                this.selected = (!this.selected);
     		}
     	}
 
@@ -40,7 +40,7 @@ var Rectangle = Shape.extend({
     	{
     		if ( x > this.getX() && x < this.getEndX() ) {
     			console.log( "Top of Rectangle." );
-    			this.selected = true;
+                this.selected = (!this.selected);
     		}
     	}
 
@@ -49,7 +49,7 @@ var Rectangle = Shape.extend({
     	{
     		if ( x > this.getX() && x < this.getEndX() ) {
     			console.log( "Bottom of Rectangle." );
-    			this.selected = true;
+    			this.selected = (!this.selected);
     		}
     	}
 
