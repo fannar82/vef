@@ -1,8 +1,8 @@
 console.log( "Text class loading." );
 
 var Text = Shape.extend({
-	constructor: function( x, y, color, thickness, canvas ) {
-		this.base( x, y, color, thickness, canvas );
+	constructor: function( x, y, color, thickness, canvas, tool ) {
+		this.base( x, y, color, thickness, canvas, tool );
 		this.txtSize = thickness * 5;
 		this.txtFont = "Arial";
 		this.txtStyle = "bold";

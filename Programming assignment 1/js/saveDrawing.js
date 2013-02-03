@@ -18,22 +18,26 @@ function loadDrawing (myDrawing) {
 					currShape.endY = myDrawing[i].endY;
 					break;
 				case "circle":
-					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas );
+					var currShape = new Circle( myDrawing[i].x, myDrawing[i].y, myDrawing[i].myColor, myDrawing[i].thickness, wb.canvas, myDrawing[i].tool );
+					currShape.radius = myDrawing[i].radius;
 					break;
 				case "freehand":
-					wb.currentShape = new Freehand( startX, startY, wb.color, wb.thickness, wb.canvas );
+					var currShape = new Freehand( myDrawing[i].x, myDrawing[i].y, myDrawing[i].myColor, myDrawing[i].thickness, wb.canvas, myDrawing[i].tool );
+					// ath currShape.points = myDrawing[i].points;
 					break;
 				case "line":
-					wb.currentShape = new Line( startX, startY, wb.color, wb.thickness, wb.canvas );
+					var currentShape = new Line(  myDrawing[i].x, myDrawing[i].y, myDrawing[i].myColor, myDrawing[i].thickness, wb.canvas, myDrawing[i].tool );
+					currShape.endX = myDrawing[i].endX;
+					currShape.endY = myDrawing[i].endY;
 					break;
 				case "text":
 					wb.textinput.show();
 					wb.textinput.offset({ left: e.pageX, top: e.pageY });
 					wb.textinput.focus();
-					wb.currentShape = new Text( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Text( myDrawing[i].x, myDrawing[i].y, myDrawing[i].myColor, myDrawing[i].thickness, wb.canvas, myDrawing[i].tool  );
 					break;
 				case "img":
-					wb.currentShape = new Img( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Img( myDrawing[i].x, myDrawing[i].y, myDrawing[i].myColor, myDrawing[i].thickness, wb.canvas, myDrawing[i].tool  );
 					break;
 				}
 		tempArray[i] = currShape ;

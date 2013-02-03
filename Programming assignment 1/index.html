@@ -129,22 +129,22 @@
 					wb.currentShape = new Rectangle( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "circle":
-					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "freehand":
-					wb.currentShape = new Freehand( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Freehand( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "line":
-					wb.currentShape = new Line( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Line( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "text":
 					wb.textinput.show();
 					wb.textinput.offset({ left: e.pageX, top: e.pageY });
 					wb.textinput.focus();
-					wb.currentShape = new Text( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Text( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "img":
-					wb.currentShape = new Img( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Img( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				// Not used in this version
 				// case "watermark":

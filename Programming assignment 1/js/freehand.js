@@ -1,8 +1,8 @@
 console.log( "Freehand class loading." );
 
 var Freehand = Shape.extend({
-    constructor: function( x, y, color, thickness, canvas ) {
-        this.base( x, y, color, thickness, canvas );
+    constructor: function( x, y, color, thickness, canvas, tool ) {
+        this.base( x, y, color, thickness, canvas, tool );
 		this.points = [];
 		console.log( "Freehand constructor loaded." );
 	},
