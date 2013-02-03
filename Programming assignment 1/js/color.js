@@ -48,10 +48,12 @@ $("#img").click(function() {
  	console.log( wb.tool + " selected." );
 });
 
-$("#watermark").click(function() {
- 	wb.tool = "watermark";
- 	console.log( wb.tool + " selected." );
+$("#save").click(function() {
+ 	saveDrawing(wb.shapesArray);
+ 	console.log("ArrayTyped");
 });
+
+
 
 $("#clearWB").click(function() {
  	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
@@ -65,5 +67,12 @@ $(selectTickness).change(function() {
 	wb.thickness = $(selectTickness).val();
 	console.log( "Line thickness = " + wb.thickness );
 });
+
+//	This is not implemented in this version.
+// $("#watermark").click(function() {
+//  	wb.tool = "watermark";
+//  	console.log( wb.tool + " selected." );
+// });
+
 
 console.log( "Colors and tools functions loaded." );
