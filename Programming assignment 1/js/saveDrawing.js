@@ -1,6 +1,6 @@
 function saveDrawing (shapesArray) {
-	var test = ["testit!" , "yebbs!", "neibbs"];
-	var myDrawing = JSON.stringify( shapesArray );
-	console.log(test);
+	//var myDrawing = JSON.stringify(shapesArray);
+	var myDrawing = JSON.stringify(shapesArray,["x","y","endX", "endY", "points"]);
+	console.log(myDrawing);
 }
 
