@@ -29,6 +29,11 @@
 		wb.whiteBoards.push( shapesArray );
 	}
 
+	function updateToolColor(){
+		$("#whatTool").text("Selected tool: " + wb.tool);
+		$("#whatColor").text("Selected color: " + wb.color);
+	}
+
 	// Hide the textarea when page loads
 	wb.textinput.hide();
 	

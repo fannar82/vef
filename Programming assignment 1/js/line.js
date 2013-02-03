@@ -38,7 +38,7 @@ var Line = Shape.extend({
         var first = (Cy - Ay) / (Cx - Ax);
         var second = (By - Ay) / (Bx - Ax);
 
-        if ( (first-second) > -0.05 && (first-second < 0.05) ){
+        if ( (first-second > -(margin/200)) && (first-second < (margin/200)) ){
             return true;
         }
         else {

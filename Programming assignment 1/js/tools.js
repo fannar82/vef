@@ -2,47 +2,61 @@ console.log( "Colors and tools functions loading." );
 
 $("#black").click(function() {
  	wb.color = "black";
+ 	updateToolColor();
+ 	console.log( wb.color + " selected." );
 });
 
 $("#blue").click(function() {
  	wb.color = "blue";
+ 	updateToolColor();
+ 	console.log( wb.color + " selected." );
 });
  
 $("#red").click(function() {
  	wb.color = "red";
+ 	updateToolColor();
+ 	console.log( wb.color + " selected." );
 }); 
 
 $("#green").click(function() {
  	wb.color = "green";
+ 	updateToolColor();
+ 	console.log( wb.color + " selected." );
 }); 
 
 $("#circle").click(function() {
  	wb.tool = "circle";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 }); 
 
 $("#rectangle").click(function() {
  	wb.tool = "rectangle";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 }); 
 
 $("#freehand").click(function() {
  	wb.tool = "freehand";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 }); 
 
 $("#line").click(function() {
  	wb.tool = "line";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 });
 
 $("#text").click(function() {
  	wb.tool = "text";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 }); 
 
 $("#img").click(function() {
  	wb.tool = "img";
+ 	updateToolColor();
  	console.log( wb.tool + " selected." );
 });
 
