@@ -1,7 +1,7 @@
 console.log( "Shape class loading." );
 
 var Shape = Base.extend({
-  constructor: function( x, y, selectedColor, thickness, canvas, margin ) {
+  constructor: function( x, y, selectedColor, thickness, canvas, tool ) {
     this.x = x;
     this.y = y;
     this.myColor = selectedColor;
@@ -9,6 +9,7 @@ var Shape = Base.extend({
     this.canvas = canvas;
     this.context = this.canvas.getContext("2d");
     console.log( "Shape constructor loaded." );
+    this.tool = tool;
   },
 
   endX: 0,

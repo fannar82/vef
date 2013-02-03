@@ -53,6 +53,13 @@ $("#save").click(function() {
  	console.log("ArrayTyped");
 });
 
+$("#load").click(function() {
+ 	var saveboxObj = $("#saveBox").val();
+ 	wb.shapesArray = loadDrawing(saveboxObj);
+ 	redraw(wb.shapesArray);
+ 	console.log("ArrayTyped");
+});
+
 
 
 $("#clearWB").click(function() {

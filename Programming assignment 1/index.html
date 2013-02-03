@@ -65,8 +65,8 @@
 		<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
 		<p>Images are not affected by thicness or color.</p>
 	</div>
-
-<textarea rows="4" cols="50" id="textinput"></textarea>
+<textarea rows="10" cols="50" id="saveBox"></textarea>
+<textarea rows="4" cols="50" id="textinput"></textarea> <!-- The textbox that appers in the canvas -->
 
 <script type="text/javascript">
 	
@@ -79,7 +79,7 @@
 	var wb = function(){}; // "Whiteboard", the global guy.
 		wb.currentShape;
 		wb.selectTickness = $("#selectTickness");
-		wb.thickness = 1;
+		wb.thickness = "1";
 		wb.canvas = document.getElementById("drawing-board");
 		wb.context = wb.canvas.getContext("2d");
 		wb.tool = "rectangle"; // Start up with this shape.
@@ -92,6 +92,7 @@
   		wb.mouseCurrX = null; // For moving objects on canvas.
   		wb.mouseCurrY = null; // For moving objects on canvas.
   		wb.margin = 10; // Margin for select.
+  		wb.loadArray = [];
 	
 	// Hide the textarea when page loads
 	wb.textinput.hide();
@@ -125,7 +126,7 @@
 			// so we love it ;-)
 			switch (wb.tool) {
 				case "rectangle":
-					wb.currentShape = new Rectangle( startX, startY, wb.color, wb.thickness, wb.canvas );
+					wb.currentShape = new Rectangle( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
 					break;
 				case "circle":
 					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas );

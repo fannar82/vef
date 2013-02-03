@@ -4,12 +4,14 @@ var Img = Shape.extend({
 	constructor: function( x, y, color, thickness, canvas ) {
 		this.base( x, y, color, thickness, canvas );
 		console.log( "Img constructor loaded." );
-		var img;
+		var imgSource;
+        var img;
 	},
 
 	draw: function() {
 		this.img = new Image();
-		this.img.src = 'img/hr.jpg';
+        this.img.src = 'img/hr.jpg';
+        this.imgSource = this.img.src;
 		this.context.drawImage( this.img, this.getX(), this.getY() );
 	},
 
@@ -19,7 +21,7 @@ var Img = Shape.extend({
     	x = x - this.canvas.offsetLeft;
     	y = y - this.canvas.offsetTop;
 
-    	// Check if the feft side is being clicked.
+    	// Check if the image is being clicked.
     	this.endX = this.getX() + this.img.width;
     	this.endY = this.getY() + this.img.height;
     	if ( x > this.getX()+margin && x < this.endX+margin &&

@@ -1,8 +1,8 @@
 console.log( "Rectangle class loading." );
 
 var Rectangle = Shape.extend({
-	constructor: function( x, y, color, thickness, canvas ) {
-		this.base( x, y, color, thickness, canvas );
+	constructor: function( x, y, color, thickness, canvas , tool ) {
+		this.base( x, y, color, thickness, canvas, tool );
 		console.log( "Rectangle constructor loaded." );
 	},
 
