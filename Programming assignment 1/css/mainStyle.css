@@ -46,7 +46,7 @@ canvas{
 /* -Id's */
 
 #content {
-	height:100%;
+
 	border-right: 1px solid #626467;
 	border-left:1px solid #626467;
 	margin-top:-5px;
@@ -258,8 +258,23 @@ canvas{
 	border:solid 1px #ccc;
 	height:100px;
 	width:100%;
-	background:light-gray;
 }
 #footer > div {
 	margin-right:960px;
+}
+#right_text{
+	height:350px;
+	border-right:1px solid #bebcb2;
+	border-left:1px solid #bebcb2;
+}
+#left_text{
+
+	height:350px;
+	border-right:1px solid #bebcb2;
+	border-left:1px solid #bebcb2;
+}
+#right_text > p { 
+	color:black;
+}
+#left_text > p { 
 }

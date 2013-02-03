@@ -15,9 +15,9 @@
 <body>
 	<div id="head">
 			<img src="img/mathboard.png" />
-		</div>
+	</div>
 	<div id="content" class="container_12">
-		
+
 			<div id="colorPicker" class="grid_12">
 				<div id="posfix">
 					<div id="colorPallet" class="grid_3">
@@ -42,19 +42,20 @@
 						<li id="undo">Undo</li>
 						<li id="clearWB">Clear</li>
 				</ul>
-			</div>
-				<p>Thickness:
-					<select id="selectTickness">
-					  <option value="1">1</option>
-					  <option value="2">2</option>
-					  <option value="3">3</option>
-					  <option value="4">4</option>
-					  <option value="5">5</option>
-					  <option value="9">9</option>
-					</select>
+				</div>
+				<div id="thickness" class="grid_1">
+					<p>Thickness:
+						<select id="selectTickness">
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+						  <option value="9">9</option>
+						</select>
 					</p>
-
-		</div>
+				</div>
+			</div>
 
 			<!--Wrapping the canvas in a "useless" DIV,
 			    to fix positioning error due to Grid960 -->
@@ -65,36 +66,39 @@
 			</div>
 		
 
-		<div id="lower_tools" class="grid_9">
-			<span id="prev_wb">Previous</span>
-			<span id="next_wb">Next</span>
-		</div>
+			<div id="lower_tools" class="grid_9">
+				<span id="prev_wb">Previous</span>
+				<span id="next_wb">Next</span>
+			</div>
 
-		<div id="save_tools" class="grid_2">
-				<span id="load">Load</span>
-				<span id="save">Save</span>
-		</div>
+			<div id="save_tools" class="grid_2">
+					<span id="load">Load</span>
+					<span id="save">Save</span>
+			</div>
 			
-	<div id="textArea" class="grid_12">
-		<div id="info">
-				
-		</div>
-			<textarea rows="10" cols="50" id="saveBox"></textarea>
-			<textarea rows="4" cols="50" id="textinput"></textarea> <!-- The textbox that appers in the canvas -->
+			<div id="textArea" class="grid_12">
+				<div id="info">
+						
+				</div>
+					<textarea rows="10" cols="50" id="saveBox"></textarea>
+					<textarea rows="4" cols="50" id="textinput"></textarea> <!-- The textbox that appers in the canvas -->
+			</div>
+
+			<div id="right_text" class="grid_6">
+				<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
+				<p>Images are not affected by thicness or color.</p>
+			</div>
+
+			<div id="left_text" class="grid_6">
+				<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
+				<p>Images are not affected by thicness or color.</p>
+				vantar ýtarlegri hjálp
+			</div>
 	</div>
 
-		<div id="help" class="grid_6">
-			<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
-			<p>Images are not affected by thicness or color.</p>
-		</div>
-
-		<div class="grid_6">
-		</div>
-</div>
 	<div id="footer">
-		<div><span>Made by the wizards, <span class="name">Fannar M. Sigurðsson</span> , <span class="name">Finnbjörn Þorvaldsson</span></div>
+		ajdpiajsdpiajsdipjasidpjasidpjaipsjdpiajsdpioajspdiojasipodjaisdjas
 	</div>
-
 
 
 <script type="text/javascript" src="js/main.js"></script>
