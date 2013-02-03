@@ -42,6 +42,7 @@
 						<li id="undo">Undo</li>
 						<li id="clearWB">Clear</li>
 				</ul>
+<<<<<<< HEAD
 				</div>
 				<div id="thickness" class="grid_1">
 					<p>Thickness:
@@ -56,6 +57,23 @@
 					</p>
 				</div>
 			</div>
+=======
+			</div>
+				<p>Thickness:
+					<select id="selectTickness">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="9">9</option>
+					</select>
+				</p>
+				<span id="whatTool"></span>
+				<span id="whatColor"></span>
+
+		</div>
+>>>>>>> b23969cbf2d286d20984cc12858d6c9f47be2229
 
 			<!--Wrapping the canvas in a "useless" DIV,
 			    to fix positioning error due to Grid960 -->
@@ -84,6 +102,7 @@
 					<textarea rows="4" cols="50" id="textinput"></textarea> <!-- The textbox that appers in the canvas -->
 			</div>
 
+<<<<<<< HEAD
 			<div id="right_text" class="grid_5">
 				<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
 				<p>Images are not affected by thicness or color.</p>
@@ -101,6 +120,26 @@
 	</div>
 
 
+=======
+		<div id="help" class="grid_6">
+			<ul>
+				<li>When text is selected, thickness is multiplied by 5 and used as font size.</li>
+				<li>Images are not affected by thickness or color.</li>
+				<li>To select an item, click Ctrl and select items with left mouse button.</li>
+				<li>To move selected items, hold Shift and move mouse (no mouse down required)</li>
+				<li>When save is clicked, the properties of the image are sent to the textbox under the canvas. That text can be saved on a hard drive with a texteditor. Only the current whiteboard is saved.</li>
+				<li>To load an older drawing. Enter the text into the textbox under the canvas and hit load. Only the current whiteboard is affected and anything on the current whiteboard is cleared.</li>
+			</ul>
+		</div>
+
+		<div class="grid_6">
+		</div>
+</div>
+	<div id="footer">
+		<div><span>Made by the wizards, <span class="name">Fannar M. Sigur&eth;sson</span> &amp; <span class="name">Finnbj&ouml;rn &THORN;orvaldsson</span></div>
+	</div>
+
+>>>>>>> b23969cbf2d286d20984cc12858d6c9f47be2229
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="js/shape.js"></script>

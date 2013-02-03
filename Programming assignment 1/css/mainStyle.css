@@ -130,14 +130,24 @@ canvas{
 	display:inline;
 	background:yellow;
 	margin-left:4px;
-	padding:1px;
+	padding:4px;
+	
+	margin-bottom:40px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	
+	border-radius: 3px;
+	background-color: rgba(0,0,0,0.04);
 
+}
+#commandPallet > ul > li:hover{
+
+	border:1px solid yellow;
 }
 
 #commandPallet > ul {
 	margin-top:13px;
 	margin-left:48px;
-	
 }
 
 
@@ -161,15 +171,31 @@ canvas{
 
 }
 
+#black:hover{
 
-#black{
+	border:3px solid yellow;
+}
+#blue:hover{
+
+	border:3px solid yellow;
+}
+#green:hover{
+
+	border:3px solid yellow;
+}
+#red:hover{
+
+	border:3px solid yellow;
+}
+
+#black {
 	background-color: black;
 	margin-left:auto;
 	margin-right:auto;
 	width:93%;
 	margin-bottom: 2px;
-	
 }
+
 #blue{
 	background-color: blue;
 	margin-left:auto;
@@ -264,17 +290,10 @@ canvas{
 }
 #right_text{
 	height:350px;
-	border-right:1px solid #bebcb2;
-	border-left:1px solid #bebcb2;
+	background-color: rgba(255,255,255,0.1);
 }
 #left_text{
 
 	height:350px;
-	border-right:1px solid #bebcb2;
-	border-left:1px solid #bebcb2;
-}
-#right_text > p { 
-	color:black;
-}
-#left_text > p { 
+	background-color: rgba(255,255,255,0.1);
 }

@@ -1,10 +1,10 @@
-function saveDrawing (shapesArray) {
+function saveDrawing ( shapesArray ) {
 	//var myDrawing = JSON.stringify(shapesArray);
 	var myDrawing = JSON.stringify(shapesArray,["x","y","endX", "endY", "points", "imgSource", "txtSize", "txtFont", "txtStyle", "radius", "myColor", "tool" , "thickness", "message"]);
 	$("#saveBox").val(myDrawing);
 }
 
-function loadDrawing (myDrawing) {
+function loadDrawing ( myDrawing, canvas ) {
 	myDrawing = JSON.parse(myDrawing);
 	
 	var tempArray = new Array (myDrawing.length);
@@ -15,7 +15,7 @@ function loadDrawing (myDrawing) {
 		trunk.startY = myDrawing[i].y;
 		trunk.color = myDrawing[i].myColor;
 		trunk.thickness = myDrawing[i].thickness;
-		trunk.canvas = wb.canvas;
+		trunk.canvas = canvas;
 		trunk.tool = myDrawing[i].tool;
 
 		switch (myDrawing[i].tool) {

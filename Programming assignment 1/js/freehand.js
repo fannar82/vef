@@ -41,18 +41,33 @@ var Freehand = Shape.extend({
     	x = x - this.canvas.offsetLeft;
     	y = y - this.canvas.offsetTop;
 
-		// THIS CODE WILL NOT WORK
-		// It only ames at the points, not the lines between the points.
-		// Needs fixing asap. Propably will use same technich as Line.
-		// for (var i = 0; i < this.points.length; i++) {
-		// 	if ( this.points[i].x > x+margin && this.points[i].x < x-margin
-		// 		&& this.points[i].y > y+margin && this.points[i].y < y-margin )
-		// 	{
-		// 		console.log( "Freehand selected." );
-		// 		this.selected = true;
-		// 		break;
-		// 	}
-		// }
+    	for (var i=1; i<this.points.length; i++) {	        
+	        var p1 = new Point( this.points[i-1].x, this.points[i-1].y );
+	        var p2 = new Point( this.points[i].x, this.points[i].y );
+	        var p3 = new Point( x, y );
+
+	    	var isCollinear = this.collinear( p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, margin );
+	        if ( isCollinear === true ) {
+				this.selected = !(this.selected);
+	            console.log( "Line selected: " + this.selected );
+	            break;
+	    	}
+    	}
+    },
+
+    collinear: function( Ax, Ay, Bx, By, Cx, Cy, margin ) { 
+	    // Thank you Chris for the good reminders of Discrete Math II :-)
+	    // http://stackoverflow.com/questions/6865832/detecting-if-a-point-is-of-a-line-segment
+	    var first = (Cy - Ay) / (Cx - Ax);
+	    var second = (By - Ay) / (Bx - Ax);
+
+	    if ( (first-second > -0.05) && (first-second < 0.05) ) {
+	        return true;
+	    }
+	    else {
+	        return false;
+	    }
     }
+
 });
 console.log( "Freehand class loaded." );
