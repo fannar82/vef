@@ -18,45 +18,32 @@
 	</div>
 	<div id="content" class="container_12">
 
-			<div id="colorPicker" class="grid_12">
-				<div id="posfix">
-					<div id="colorPallet" class="grid_3">
-						<div id="black" >&nbsp;</div>
-						<div id="blue" >&nbsp;</div>
-						<div id="red">&nbsp;</div>
-						<div id="green">&nbsp;</div>
+		<div id="colorPicker" class="grid_12">
+			<div id="posfix">
+				<div id="colorPallet" class="grid_3">
+					<div id="black" >&nbsp;</div>
+					<div id="blue" >&nbsp;</div>
+					<div id="red">&nbsp;</div>
+					<div id="green">&nbsp;</div>
 					</div>
 				</div>
 
-				<div id="commandPallet" class="grid_8">
-					<ul>
-						<li id="rectangle">Rectangle</li>
-						<li id="circle">Circle</li>
-						<li id="freehand">Freehand</li>
-						<li id="line">Line</li>
-						<li id="text">Text</li>
-						<li id="img">Image</li>
-						<!-- Not used in this version
-						<span id="watermark">Watermark</span>
-						-->
-						<li id="undo">Undo</li>
-						<li id="clearWB">Clear</li>
+			<div id="commandPallet" class="grid_8">
+				<ul>
+					<li id="rectangle">Rectangle</li>
+					<li id="circle">Circle</li>
+					<li id="freehand">Freehand</li>
+					<li id="line">Line</li>
+					<li id="text">Text</li>
+					<li id="img">Image</li>
+					<!-- Not used in this version
+					<span id="watermark">Watermark</span>
+					-->
+					<li id="undo">Undo</li>
+					<li id="clearWB">Clear</li>
 				</ul>
 				</div>
-				<div id="thickness" class="grid_1">
-					<p>Thickness:
-						<select id="selectTickness">
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-						  <option value="5">5</option>
-						  <option value="9">9</option>
-						</select>
-					</p>
-				</div>
-			</div>
-			</div>
+			<div id="thickness" class="grid_1">
 				<p>Thickness:
 					<select id="selectTickness">
 					  <option value="1">1</option>
@@ -67,9 +54,7 @@
 					  <option value="9">9</option>
 					</select>
 				</p>
-				<span id="whatTool"></span>
-				<span id="whatColor"></span>
-
+			</div>
 		</div>
 
 			<!--Wrapping the canvas in a "useless" DIV,
@@ -91,6 +76,9 @@
 					<span id="save">Save</span>
 			</div>
 			
+			<div class="grid_12">
+				<p>Copy Paste your drawings</p>
+			</div>
 			<div id="textArea" class="grid_12">
 				<div id="info">
 						
@@ -98,15 +86,24 @@
 					<textarea rows="10" cols="50" id="saveBox"></textarea>
 					<textarea rows="4" cols="50" id="textinput"></textarea> <!-- The textbox that appers in the canvas -->
 			</div>
-		<div id="help" class="grid_6">
+		<div id="left_text" class="grid_6">
 			
+				<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
+				<p>Images are not affected by thickness or color.</p>
+				<p>To select an item, click Ctrl and select items with left mouse button.</p>
+				<p>To move selected items, hold Shift and move mouse (no mouse down required)</p>
+				<p>When save is clicked, the properties of the image are sent to the textbox under the canvas. That text can be saved on a hard drive with a texteditor. Only the current whiteboard is saved.</p>
+				<p>To load an older drawing. Enter the text into the textbox under the canvas and hit load. Only the current whiteboard is affected and anything on the current whiteboard is cleared.</p>
+		
 		</div>
 
-		<div class="grid_6">
+		<div id="right_text" class="grid_6">
+				<p>Made by the wizards, Fannar M. Sigur&eth;sson< &amp; Finnbj&ouml;rn &THORN;orvaldsson</p>
+				<p>This site, was designed for Chrome</p>
 		</div>
-		</div>
+	</div>	
 	<div id="footer">
-		<div><span>Made by the wizards, <span class="name">Fannar M. Sigur&eth;sson</span> &amp; <span class="name">Finnbj&ouml;rn &THORN;orvaldsson</span></div>
+		<div>crazyguys</div>
 	</div>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/tools.js"></script>
