@@ -53,8 +53,8 @@ $("#save").click(function() {
 
 $("#load").click(function() {
  	var saveboxObj = $("#saveBox").val();
- 	//wb.shapesArray = loadDrawing(saveboxObj);
- 	redraw( loadDrawing(saveboxObj) );
+ 	wb.whiteBoards[wb.currWB] = loadDrawing(saveboxObj, wb.canvas);
+ 	redraw( wb.whiteBoards[wb.currWB] );
  	console.log("Drawing loaded.");
 });
 
