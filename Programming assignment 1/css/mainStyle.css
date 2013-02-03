@@ -253,5 +253,13 @@ canvas{
 	-webkit-box-shadow: 0 0 4px 1px #000;
 	box-shadow: 0 0 4px 1px #000;
 	border: 1 px solid #ccc;
-
+}
+#footer {
+	border:solid 1px #ccc;
+	height:100px;
+	width:100%;
+	background:light-gray;
+}
+#footer > div {
+	margin-right:960px;
 }
