@@ -34,6 +34,8 @@
 		$("#whatColor").text("Selected color: " + wb.color);
 	}
 
+	updateToolColor();
+
 	// Hide the textarea when page loads
 	wb.textinput.hide();
 	
