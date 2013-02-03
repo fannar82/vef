@@ -128,26 +128,42 @@ canvas{
 }
 
 #colorPallet > div{
-
+	
 }
 
 #posfix {
-	margin-top:-40px;
+
 }
 
 
 #black{
 	background-color: black;
-
+	margin-left:auto;
+	margin-right:auto;
+	width:93%;
+	margin-bottom: 2px;
+	
 }
 #blue{
 	background-color: blue;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom: 2px;
+	width:93%;
 }
 
 #red{
 	background-color: red;
+	margin-left:auto;
+	margin-right:auto;
+	width:93%;
+	margin-bottom: 2px;
 }
 
 #green{
 	background-color: green;
+	margin-left:auto;
+	margin-right:auto;
+	width:93%;
+
 }
