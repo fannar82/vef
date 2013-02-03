@@ -49,17 +49,14 @@ canvas{
 	border-right: 1px solid #626467;
 	border-left:1px solid #626467;
 	background-color: #D0CEC3;
+	margin-top:-5px;
 }
 
 #head {
 
 	background: #2A3E59;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2A3E59), color-stop(.3, #2E4461), color-stop(.7, #2E4461), color-stop(1, #2A3E59)); 
-	background: -moz-linear-gradient(top, 	#2A3E59, white 30%, white 70%, #2A3E59);
-	background-color: #2A3E59;
-	/* little bit manipulation of 960.*/
-	padding-left: 21px;
-	margin-left: -1px;
+	background: -moz-linear-gradient(top, 	#2A3E59, #2E4461 30%, #2E4461 70%, #2A3E59);
 	text-align: center;
 	margin-bottom: 5px;
 }
@@ -79,13 +76,15 @@ canvas{
 #colorPicker {
 
 	background-color: #9C9B95;
-	height: 55px;
-	display:inline-block;
+	height: 125px;
+	margin-top:-15px;
 	margin-bottom: 5px;
 
-	-moz-box-shadow: inset 0 0 5px 5px #888;
-	-webkit-box-shadow: inset 0 0 5px 5px#888;
-	box-shadow: inset 0 0 5px 5px #888;
+	border: 3px solid #FFF;
+	-moz-box-shadow: 0 0 5px 5px #000;
+	-webkit-box-shadow: 0 0 1.4px 1.4px#000;
+	box-shadow: 0 0 5.4px 1.5px #000;
+
 
 }
 #colorPicker > p {
