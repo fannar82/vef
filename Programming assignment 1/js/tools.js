@@ -60,7 +60,7 @@ $("#load").click(function() {
 
 $("#clearWB").click(function() {
  	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
-	wb.whiteBoards[wb.currWB].shapesArray = [];
+	wb.whiteBoards[wb.currWB] = [];
  	console.log( "Whiteboard cleared." );
 });
 

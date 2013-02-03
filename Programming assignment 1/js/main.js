@@ -31,7 +31,6 @@
 
 	// Hide the textarea when page loads
 	wb.textinput.hide();
-
 	
 	$(wb.canvas).mousedown( function(e) {
 		// If Ctrl is pressed, selection is in progress
@@ -108,6 +107,13 @@
 				wb.currentShape.arrayX();
 				wb.currentShape.draw();
 	  		}
+	  		else{ // Show shapes as they are being created
+				wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+				wb.currentShape.setEnd( e.pageX, e.pageY );
+				wb.whiteBoards[wb.currWB].push(wb.currentShape);
+				redraw(wb.whiteBoards[wb.currWB]);
+				wb.whiteBoards[wb.currWB].pop();
+	  		}
 	  	}
 
 	  	// Move selected objects
@@ -140,7 +146,7 @@
 			if ( wb.currentShape.iAm != "Text" ) {
 				addToShapesArray( wb.currentShape );
 			};
-
+ 
 			// The mouse is no longer pressed
 			wb.mouseIsDown = false;
 		}
