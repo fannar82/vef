@@ -18,31 +18,50 @@
 		<div id="head" class="grid_12">
 			<img src="img/mathboard.png" />
 		</div>
+		<div>
+
+		</div>
 		<div id="colorPicker" class="grid_12">
 			<p id="black">&nbsp;</p>
 			<p id="blue">&nbsp;</p>
 			<p id="red">&nbsp;</p>
 			<p id="green">&nbsp;</p>
+			<p>Thickness:
+			<select id="selectTickness">
+			  <option value="1">1</option>
+			  <option value="2">2</option>
+			  <option value="3">3</option>
+			  <option value="4">4</option>
+			  <option value="5">5</option>
+			  <option value="9">9</option>
+			</select>
+			</p>
 			<span id="rectangle">Rectangle</span>
 			<span id="circle">Circle</span>
 			<span id="freehand">Freehand</span>
 			<span id="line">Line</span>
 			<span id="text">Text</span>
 			<span id="img">Image</span>
+			<!-- Not used in this version
 			<span id="watermark">Watermark</span>
+			-->
 			<span id="undo">Undo</span>
+			<span id="clearWB">Clear</span>
 		</div>
 
 
-		<!--Wrapping the canvas in a useless DIV,
+		<!--Wrapping the canvas in a "useless" DIV,
 		    to fix positioning error due to Grid960 -->
 		<div class="grid_12">
 			<canvas id="drawing-board" width="938px" height="400px">
-				<p>
-					Your browser does not support this. Please update your browser and enter the year 2013.
-				</p>
+				<p>Your browser does not support this. Please update your browser and enter the year 2013.</p>
 			</canvas>
 		<div>
+	</div>
+
+	<div id="info">
+		<p>When text is selected, thickness is multiplied by 5 and used as font size.</p>
+		<p>Images are not affected by thicness or color.</p>
 	</div>
 
 <textarea rows="4" cols="50" id="textinput"></textarea>
@@ -57,23 +76,25 @@
 	//Main drawingboard functions.
 	var wb = function(){}; // "Whiteboard", the global guy.
 		wb.currentShape;
-	var canvas = document.getElementById("drawing-board");
-	var context = canvas.getContext("2d");
-	var tool = "rectangle"; // Start up with this shape.
-	var color = "red"; // Start up with this color.
-	var shapesArray = new Array(); // Objects put here and removed on undo.
-	var shapesRedo = new Array(); // Undo actions sent here.
-	var mouseIsDown = false; // For mouse movements gestures.
-	var textinput = $("#textinput"); // Fetch the text input field.
-	var undo = $("#undo"); // Fetch the undo button.
-  	var mouseCurrX = null; // For moving objects on canvas.
-  	var mouseCurrY = null; // For moving objects on canvas.
-  	var margin = 10; // Margin for select.
+		wb.selectTickness = $("#selectTickness");
+		wb.thickness = 1;
+		wb.canvas = document.getElementById("drawing-board");
+		wb.context = wb.canvas.getContext("2d");
+		wb.tool = "rectangle"; // Start up with this shape.
+		wb.color = "red"; // Start up with this color.
+		wb.shapesArray = new Array(); // Objects put here and removed on undo.
+		wb.shapesRedo = new Array(); // Undo actions sent here.
+		wb.mouseIsDown = false; // For mouse movements gestures.
+		wb.textinput = $("#textinput"); // Fetch the text input field.
+		wb.undo = $("#undo"); // Fetch the undo button.
+  		wb.mouseCurrX = null; // For moving objects on canvas.
+  		wb.mouseCurrY = null; // For moving objects on canvas.
+  		wb.margin = 10; // Margin for select.
 	
 	// Hide the textarea when page loads
-	textinput.hide();
+	wb.textinput.hide();
 	
-	$(canvas).mousedown( function(e) {
+	$(wb.canvas).mousedown( function(e) {
 		// If Ctrl is pressed, selection is in progress
 		// and no shape sholud be drawn.
 		if ( e.ctrlKey ) {
@@ -85,8 +106,8 @@
 			// Í freehand, það sem er klikkað færðu X og
 			// Y gildi sem þú getur borið saman við X og
 			// Y gildin sem eru í Point array
-			for (var i = 0; i < shapesArray.length; i++) {
-		  		shapesArray[i].select( e.pageX, e.pageY, margin );
+			for (var i = 0; i < wb.shapesArray.length; i++) {
+		  		wb.shapesArray[i].select( e.pageX, e.pageY, wb.margin );
 			}
 		}
 		else {
@@ -97,43 +118,45 @@
 			startY = e.pageY - this.offsetTop;
 
 			// Select shape to draw
-			// Crockford hatest it,
-			// but we love it ;-)
-			switch (tool) {
+			// Crockford hatest switch,
+			// but we know how to use "break;"
+			// so we love it ;-)
+			switch (wb.tool) {
 				case "rectangle":
-					wb.currentShape = new Rectangle( startX, startY );
+					wb.currentShape = new Rectangle( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
 				case "circle":
-					wb.currentShape = new Circle( startX, startY );
+					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
 				case "freehand":
-					wb.currentShape = new Freehand( startX, startY );
+					wb.currentShape = new Freehand( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
 				case "line":
-					wb.currentShape = new Line( startX, startY );
+					wb.currentShape = new Line( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
 				case "text":
-					textinput.show();
-					textinput.offset({ left: e.pageX, top: e.pageY });
-					textinput.focus();
-					wb.currentShape = new Text( startX, startY );
+					wb.textinput.show();
+					wb.textinput.offset({ left: e.pageX, top: e.pageY });
+					wb.textinput.focus();
+					wb.currentShape = new Text( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
 				case "img":
-					wb.currentShape = new Img( startX, startY );
+					wb.currentShape = new Img( startX, startY, wb.color, wb.thickness, wb.canvas );
 					break;
-				case "watermark":
-					wb.currentShape = new Watermark( 0, 0 );
-					break;
+				// Not used in this version
+				// case "watermark":
+					//wb.currentShape = new Watermark( 0, 0 );
+					//break;
 			}
 
 			// The mouse has been pressed
-			mouseIsDown = true;
+			wb.mouseIsDown = true;
 		}
 	});
 
-	$(canvas).mousemove( function(e) {
-		if ( mouseIsDown == true ){
-			if( tool == "freehand" ) {
+	$(wb.canvas).mousemove( function(e) {
+		if ( wb.mouseIsDown == true ){
+			if( wb.tool == "freehand" ) {
 				wb.currentShape.setEnd( e.pageX, e.pageY );
 				wb.currentShape.arrayX();
 				wb.currentShape.draw();
@@ -141,23 +164,23 @@
 	  	}
 
 	  	// Move selected objects
-	  	if ( shapesArray.length > 0 && e.shiftKey ) {
-			for (var i = 0; i < shapesArray.length; i++) {
-				if ( shapesArray[i].selected == true )
+	  	if ( wb.shapesArray.length > 0 && e.shiftKey ) {
+			for (var i = 0; i < wb.shapesArray.length; i++) {
+				if ( wb.shapesArray[i].selected == true )
 				{
-		  			shapesArray[i].move( e.pageX - this.mouseCurrX, e.pageY - this.mouseCurrY );
+		  			wb.shapesArray[i].move( e.pageX - wb.mouseCurrX, e.pageY - wb.mouseCurrY );
 		  		}
 			}
-			context.clearRect(0, 0, canvas.width, canvas.height);
-			redraw(shapesArray);
+			wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+			redraw(wb.shapesArray);	
 	  	}
 
 	  	// Position the mouse for next move.
-	  	this.mouseCurrX = e.pageX;
-	  	this.mouseCurrY = e.pageY;
+	  	wb.mouseCurrX = e.pageX;
+	  	wb.mouseCurrY = e.pageY;
 	});
 	
-	$(canvas).mouseup( function(e) {
+	$(wb.canvas).mouseup( function(e) {
 		// If Ctrl is pressed, selection is in progress
 		// and no shape sholud be drawn.
 		if ( !e.ctrlKey ) {
@@ -166,40 +189,38 @@
 
 			// If this is text, then it should only be
 			// added when the textbox retrives an Enter,
-			// see "textinput.keypress" function.
+			// see "wb.textinput.keypress" function.
 			if ( wb.currentShape.iAm != "Text" ) {
 				addToShapesArray( wb.currentShape );
 			};
 
 			// The mouse is no longer pressed
-			mouseIsDown = false;
+			wb.mouseIsDown = false;
 		}
-
 	});
 
-	// Listener to textinput
-	textinput.keypress( function(e) {
-
+	// Listener to wb.textinput
+	wb.textinput.keypress( function(e) {
 		// If Enter is pressed, hide the textarea again
 		// and draw it's contents to the canvas.
     	if(e.keyCode == 13 && !e.shiftKey){
-    		wb.currentShape.drawText( textinput.val() );
-    		textinput.hide();
-    		textinput.val(''); // Clear textarea for next use
+    		wb.currentShape.drawText( wb.textinput.val() );
+    		wb.textinput.hide();
+    		wb.textinput.val(''); // Clear textarea for next use
     		console.log("Enter has been pressed.");
 
     		addToShapesArray( wb.currentShape );
       	}
 	});
 
-	$(undo).click( function() {
+	$(wb.undo).click( function() {
 		makeUndo();
 	});
 
 	$(document).keypress( function(e) {
 		// If the textinput object is not loaded and 
 		// Ctrl + Z is pressed - undo last action.
-		if ( tool != "text" ) {
+		if ( wb.tool != "text" ) {
 			if( e.which === 26 && e.ctrlKey ){
 				makeUndo( );
 			}
@@ -208,22 +229,20 @@
 
 	function addToShapesArray ( shape ) {
 		// Push the shape to the array for later usage
-		shapesArray.push(wb.currentShape);
-		console.log( "A shape was added to shapesArray, current count: " + shapesArray.length );
-		console.log( "List of all shapes: " + shapesArray.toString() );
+		wb.shapesArray.push(wb.currentShape);
+		console.log( "A shape was added to wb.shapesArray, current count: " + wb.shapesArray.length );
+		console.log( "List of all shapes: " + wb.shapesArray.toString() );
 	}
 
 	function makeUndo () {
 		console.log("Starting undo.");
 
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		shapesRedo.push(shapesArray.pop());
-		redraw(shapesArray);
+		wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+		wb.shapesRedo.push(wb.shapesArray.pop());
+		redraw(wb.shapesArray);
 
 		console.log("Undo done.");
 	}
-
-
 </script>
 <script type="text/javascript" src="js/color.js"></script>
 <script type="text/javascript" src="js/shape.js"></script>
@@ -233,8 +252,11 @@
 <script type="text/javascript" src="js/line.js"></script>
 <script type="text/javascript" src="js/text.js"></script>
 <script type="text/javascript" src="js/img.js"></script>
-<script type="text/javascript" src="js/watermark.js"></script>
 <script type="text/javascript" src="js/redraw.js"></script>
 <script type="text/javascript" src="js/Point.js"></script>
+
+<!--Not used in this vesion
+	<script type="text/javascript" src="js/watermark.js"></script>
+-->
 </body>
 </html>

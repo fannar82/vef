@@ -1,26 +1,27 @@
 console.log( "Line class loading." );
 
 var Line = Shape.extend({
-	constructor: function( x, y ) {
-		this.base( x, y, color );
+    constructor: function( x, y, color, thickness, canvas ) {
+        this.base( x, y, color, thickness, canvas );
 		console.log( "Line constructor loaded." );
 	},
 
 	// Override
 	draw: function () {
-		context.strokeStyle = this.myColor;
-		context.beginPath();
-		context.moveTo( this.getX() , this.getY() );
-    	context.lineTo( this.getEndX() , this.getEndY() );
-		context.stroke();
-    	context.closePath();
+		this.context.beginPath();
+        this.context.strokeStyle = this.myColor;
+        this.context.lineWidth = this.thickness;
+		this.context.moveTo( this.getX() , this.getY() );
+    	this.context.lineTo( this.getEndX() , this.getEndY() );
+		this.context.stroke();
+    	this.context.closePath();
 	},
 
     select: function ( x, y, margin ) {
 		// THIS CODE IS NOT READY
 		// https://www.google.is/search?q=is+the+point+on+a+line&oq=is+the+point+on+a+line&aqs=chrome.0.57j0j60l3j0.3555&sourceid=chrome&ie=UTF-8
-    	x = x - canvas.offsetLeft;
-    	y = y - canvas.offsetTop;
+    	x = x - this.canvas.offsetLeft;
+    	y = y - this.canvas.offsetTop;
 
     	var slope = ( this.getY() - this.getEndY() ) / ( this.getX() - this.getEndY() );
     	var y_intersect = -( slope * this.getX() / this.getY() );

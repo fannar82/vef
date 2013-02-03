@@ -3,53 +3,67 @@ console.log( "Colors and tools functions loading." );
 //Langar svolítið að renama þessa skrá í smá svona misc color\tools or sum. (undo)
 
 $("#black").click(function() {
- 	color = "black";
+ 	wb.color = "black";
 });
 
 $("#blue").click(function() {
- 	color = "blue";
+ 	wb.color = "blue";
 });
  
 $("#red").click(function() {
- 	color = "red";
+ 	wb.color = "red";
 }); 
 
 $("#green").click(function() {
- 	color = "green";
+ 	wb.color = "green";
 }); 
 
 $("#circle").click(function() {
- 	tool = "circle";
- 	console.log( tool + " selected." );
+ 	wb.tool = "circle";
+ 	console.log( wb.tool + " selected." );
 }); 
 
 $("#rectangle").click(function() {
- 	tool = "rectangle";
- 	console.log( tool + " selected." );
+ 	wb.tool = "rectangle";
+ 	console.log( wb.tool + " selected." );
 }); 
 
 $("#freehand").click(function() {
- 	tool = "freehand";
- 	console.log( tool + " selected." );
+ 	wb.tool = "freehand";
+ 	console.log( wb.tool + " selected." );
 }); 
 
 $("#line").click(function() {
- 	tool = "line";
- 	console.log( tool + " selected." );
+ 	wb.tool = "line";
+ 	console.log( wb.tool + " selected." );
 });
 
 $("#text").click(function() {
- 	tool = "text";
- 	console.log( tool + " selected." );
+ 	wb.tool = "text";
+ 	console.log( wb.tool + " selected." );
 }); 
 
 $("#img").click(function() {
- 	tool = "img";
- 	console.log( tool + " selected." );
+ 	wb.tool = "img";
+ 	console.log( wb.tool + " selected." );
 });
 
 $("#watermark").click(function() {
- 	tool = "watermark";
- 	console.log( tool + " selected." );
-}); 
+ 	wb.tool = "watermark";
+ 	console.log( wb.tool + " selected." );
+});
+
+$("#clearWB").click(function() {
+ 	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+	wb.shapesArray = [];
+ 	console.log( "Whiteboard cleared." );
+});
+
+// Change thickness of lines when selectThickness select
+// box is changed.
+$(selectTickness).change(function() {
+	wb.thickness = $(selectTickness).val();
+	console.log( "Line thickness = " + wb.thickness );
+});
+
 console.log( "Colors and tools functions loaded." );

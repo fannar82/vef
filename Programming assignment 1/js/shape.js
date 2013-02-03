@@ -1,10 +1,13 @@
 console.log( "Shape class loading." );
 
 var Shape = Base.extend({
-  constructor: function( x, y, selectedColor ) {
+  constructor: function( x, y, selectedColor, thickness, canvas, margin ) {
     this.x = x;
     this.y = y;
-    this.myColor = selectedColor,
+    this.myColor = selectedColor;
+    this.thickness = thickness;
+    this.canvas = canvas;
+    this.context = this.canvas.getContext("2d");
     console.log( "Shape constructor loaded." );
   },
 
@@ -29,8 +32,8 @@ var Shape = Base.extend({
   },
   
   setEnd: function ( x, y ) {
-    this.endX = x - canvas.offsetLeft;
-    this.endY = y - canvas.offsetTop;
+    this.endX = x - this.canvas.offsetLeft;
+    this.endY = y - this.canvas.offsetTop;
   },
 
   setStart: function ( x, y ) {
