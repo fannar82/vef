@@ -1,8 +1,8 @@
 console.log( "Line class loading." );
 
 var Line = Shape.extend({
-    constructor: function( x, y, color, thickness, canvas, tool ) {
-        this.base( x, y, color, thickness, canvas, tool );
+    constructor: function( trunk ) {
+        this.base( trunk );
 		console.log( "Line constructor loaded." );
 	},
 

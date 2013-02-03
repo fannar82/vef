@@ -1,14 +1,12 @@
 console.log( "Text class loading." );
 
 var Text = Shape.extend({
-	constructor: function( x, y, color, thickness, canvas, tool ) {
-		this.base( x, y, color, thickness, canvas, tool );
-		this.txtSize = thickness * 5;
+	constructor: function( trunk ) {
+		this.base( trunk );
+		this.txtSize = this.thickness * 5;
 		this.txtFont = "Arial";
 		this.txtStyle = "bold";
 		this.txtSettings = this.txtStyle + " " + this.txtSize + "px " + this.txtFont;
-		this.y = this.y + this.txtSize; // Move the text down so it appears
-										// where the textinputbox was located.
 		console.log( "Text constructor loaded." );
 	},
 
@@ -28,7 +26,11 @@ var Text = Shape.extend({
 		}
 		this.context.fillStyle = this.myColor;	
 		this.context.font = this.txtSettings;
-		this.context.fillText(text, this.getX(), this.getY() );
+
+		var tempY = this.y + this.txtSize; // Move the text down so it appears
+										   // where the textinputbox was located.
+
+		this.context.fillText(text, this.getX(), tempY );
 	},
 
     select: function ( x, y, margin ) {
@@ -45,11 +47,6 @@ var Text = Shape.extend({
 
   		this.endX = this.getX() + width;
   		this.endY = this.getY() - (height / 2);
-
-        console.log( "TextX=" + this.getX() + ", TextY=" + this.getY() );
-        console.log( "TextW=" + width + ", TextH=" + height );
-        console.log( "TextEndX=" + this.getEndX() + ", TextEndY=" + this.getEndY() );
-
 
     	if ( x > this.getX()-margin && x < this.getEndX()+margin &&
     		 y > this.getEndY()-margin && y < this.getY()+margin )

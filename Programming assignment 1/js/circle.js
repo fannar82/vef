@@ -1,8 +1,8 @@
 console.log( "Circle class loading." );
 
 var Circle = Shape.extend({
-	constructor: function( x, y, color, thickness, canvas, tool ) {
-		this.base( x, y, color, thickness, canvas, tool );
+	constructor: function( trunk ) {
+		this.base( trunk );
 	    console.log( "Circle constructor loaded." );
 	},
 

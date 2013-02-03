@@ -13,7 +13,6 @@
 	<title>Fannar &amp; Finnbj&ouml;rn WEPO verkefni 1 WhatSlapMeAroundAndColorMePerfect!</title>
 </head>
 <body>
-
 	<div id="content" class="container_12">
 		<div id="head" class="grid_12">
 			<img src="img/mathboard.png" />
@@ -59,6 +58,11 @@
 				<p>Your browser does not support this. Please update your browser and enter the year 2013.</p>
 			</canvas>
 		<div>
+	</div>
+
+	<div id="lower_tools" class="grid_12">
+		<span id="prev_wb">Previous</span>
+		<span id="next_wb">Next</span>
 	</div>
 
 	<div id="info">
@@ -120,31 +124,39 @@
 			startX = e.pageX - this.offsetLeft;
 			startY = e.pageY - this.offsetTop;
 
+			var trunk = function() {}
+				trunk.startX = startX
+				trunk.startY = startY;
+				trunk.color = wb.color;
+				trunk.thickness = wb.thickness;
+				trunk.canvas = wb.canvas;
+				trunk.tool = wb.tool;
+
 			// Select shape to draw
 			// Crockford hatest switch,
 			// but we know how to use "break;"
 			// so we love it ;-)
 			switch (wb.tool) {
 				case "rectangle":
-					wb.currentShape = new Rectangle( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Rectangle( trunk );
 					break;
 				case "circle":
-					wb.currentShape = new Circle( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Circle( trunk );
 					break;
 				case "freehand":
-					wb.currentShape = new Freehand( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Freehand( trunk );
 					break;
 				case "line":
-					wb.currentShape = new Line( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Line( trunk );
 					break;
 				case "text":
 					wb.textinput.show();
 					wb.textinput.offset({ left: e.pageX, top: e.pageY });
 					wb.textinput.focus();
-					wb.currentShape = new Text( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Text( trunk );
 					break;
 				case "img":
-					wb.currentShape = new Img( startX, startY, wb.color, wb.thickness, wb.canvas, wb.tool );
+					wb.currentShape = new Img( trunk );
 					break;
 				// Not used in this version
 				// case "watermark":
@@ -158,8 +170,8 @@
 	});
 
 	$(wb.canvas).mousemove( function(e) {
-		if ( wb.mouseIsDown == true ){
-			if( wb.tool == "freehand" ) {
+		if ( wb.mouseIsDown === true ){
+			if( wb.tool === "freehand" ) {
 				wb.currentShape.setEnd( e.pageX, e.pageY );
 				wb.currentShape.arrayX();
 				wb.currentShape.draw();
@@ -169,7 +181,7 @@
 	  	// Move selected objects
 	  	if ( wb.shapesArray.length > 0 && e.shiftKey ) {
 			for (var i = 0; i < wb.shapesArray.length; i++) {
-				if ( wb.shapesArray[i].selected == true )
+				if ( wb.shapesArray[i].selected === true )
 				{
 		  			wb.shapesArray[i].move( e.pageX - wb.mouseCurrX, e.pageY - wb.mouseCurrY );
 		  		}
@@ -206,7 +218,7 @@
 	wb.textinput.keypress( function(e) {
 		// If Enter is pressed, hide the textarea again
 		// and draw it's contents to the canvas.
-    	if(e.keyCode == 13 && !e.shiftKey){
+    	if(e.keyCode === 13 && !e.shiftKey){
     		wb.currentShape.drawText( wb.textinput.val() );
     		wb.textinput.hide();
     		wb.textinput.val(''); // Clear textarea for next use
@@ -223,6 +235,7 @@
 	$(document).keypress( function(e) {
 		// If the textinput object is not loaded and 
 		// Ctrl + Z is pressed - undo last action.
+		// Works like a charm in Chrome, does not work in FireFox.
 		if ( wb.tool != "text" ) {
 			if( e.which === 26 && e.ctrlKey ){
 				makeUndo( );
@@ -247,7 +260,7 @@
 		console.log("Undo done.");
 	}
 </script>
-<script type="text/javascript" src="js/color.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript" src="js/shape.js"></script>
 <script type="text/javascript" src="js/circle.js"></script>
 <script type="text/javascript" src="js/rect.js"></script>

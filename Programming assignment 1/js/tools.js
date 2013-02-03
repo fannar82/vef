@@ -50,17 +50,15 @@ $("#img").click(function() {
 
 $("#save").click(function() {
  	saveDrawing(wb.shapesArray);
- 	console.log("ArrayTyped");
+ 	console.log("Drawing saved");
 });
 
 $("#load").click(function() {
  	var saveboxObj = $("#saveBox").val();
  	wb.shapesArray = loadDrawing(saveboxObj);
  	redraw(wb.shapesArray);
- 	console.log("ArrayTyped");
+ 	console.log("Drawing loaded.");
 });
-
-
 
 $("#clearWB").click(function() {
  	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);

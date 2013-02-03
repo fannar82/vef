@@ -1,11 +1,11 @@
 console.log( "Img class loading." );
 
 var Img = Shape.extend({
-	constructor: function( x, y, color, thickness, canvas ) {
-		this.base( x, y, color, thickness, canvas );
-		console.log( "Img constructor loaded." );
+	constructor: function( trunk ) {
+		this.base( trunk );
 		var imgSource;
         var img;
+        console.log( "Img constructor loaded." );
 	},
 
 	draw: function() {
