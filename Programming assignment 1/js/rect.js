@@ -22,8 +22,9 @@ var Rectangle = Shape.extend({
     	if ( x < this.getX()+margin && x > this.getX()-margin )
     	{
     		if ( y > this.getY() && y < this.getEndY() ) {
-    			console.log( "Left side of Rectangle." );
-                this.selected = (!this.selected);
+    			this.selected = (!this.selected);
+                console.log( "Rectangle selected:" + this.selected );
+                console.log( "(Left sied)" );
     		}
     	}
     	
@@ -31,8 +32,9 @@ var Rectangle = Shape.extend({
     	if ( x > this.getEndX() - margin && x < this.getEndX() + margin )
     	{
     		if ( y > this.getY() && y < this.getEndY() ) {
-    			console.log( "Right side of Rectangle." );
-                this.selected = (!this.selected);
+    			this.selected = (!this.selected);
+                console.log( "Rectangle selected:" + this.selected );
+                console.log( "(Right side)" );
     		}
     	}
 
@@ -40,8 +42,9 @@ var Rectangle = Shape.extend({
 		if ( y < this.getY()+margin && y > this.getY()-margin )
     	{
     		if ( x > this.getX() && x < this.getEndX() ) {
-    			console.log( "Top of Rectangle." );
-                this.selected = (!this.selected);
+    			this.selected = (!this.selected);
+                console.log( "Rectangle selected:" + this.selected );                
+                console.log( "(Top)" );
     		}
     	}
 
@@ -49,8 +52,9 @@ var Rectangle = Shape.extend({
     	if ( y > this.getEndY()-margin && y < this.getEndY()+margin )
     	{
     		if ( x > this.getX() && x < this.getEndX() ) {
-    			console.log( "Bottom of Rectangle." );
     			this.selected = (!this.selected);
+                console.log( "Rectangle selected:" + this.selected );                
+                console.log( "(Bottom)" );
     		}
     	}
 

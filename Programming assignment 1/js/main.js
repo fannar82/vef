@@ -1,5 +1,4 @@
-	
-	// A Cursor fix for Chrome:
+		// A Cursor fix for Chrome:
 	document.onselectstart = function(){ 
 		return false; 
 	};
@@ -13,8 +12,9 @@
 		wb.context = wb.canvas.getContext("2d");
 		wb.tool = "rectangle"; // Start up with this shape.
 		wb.color = "red"; // Start up with this color.
-		wb.shapesArray = new Array(); // Objects put here and removed on undo.
-		wb.shapesRedo = new Array(); // Undo actions sent here.
+		wb.whiteBoards = new Array(); // Array of arrays with the drawings.
+		wb.currWB = 0; // Number of the current whiteboard
+		wb.shapesRedo = new Array(); // Undo actions sent here. Creats possibility for redo.
 		wb.mouseIsDown = false; // For mouse movements gestures.
 		wb.textinput = $("#textinput"); // Fetch the text input field.
 		wb.undo = $("#undo"); // Fetch the undo button.
@@ -23,8 +23,15 @@
   		wb.margin = 10; // Margin for select.
   		wb.loadArray = [];
 	
+	// Create an array of four whiteboards
+	for (var i=0; i<4;i++) {
+		var shapesArray = new Array(); // Objects put here and removed on undo.
+		wb.whiteBoards.push( shapesArray );
+	}
+
 	// Hide the textarea when page loads
 	wb.textinput.hide();
+
 	
 	$(wb.canvas).mousedown( function(e) {
 		// If Ctrl is pressed, selection is in progress
@@ -38,8 +45,8 @@
 			// Í freehand, það sem er klikkað færðu X og
 			// Y gildi sem þú getur borið saman við X og
 			// Y gildin sem eru í Point array
-			for (var i = 0; i < wb.shapesArray.length; i++) {
-		  		wb.shapesArray[i].select( e.pageX, e.pageY, wb.margin );
+			for (var i = 0; i < wb.whiteBoards[wb.currWB].length; i++) {
+		  		wb.whiteBoards[wb.currWB][i].select( e.pageX, e.pageY, wb.margin );
 			}
 		}
 		else {
@@ -104,15 +111,15 @@
 	  	}
 
 	  	// Move selected objects
-	  	if ( wb.shapesArray.length > 0 && e.shiftKey ) {
-			for (var i = 0; i < wb.shapesArray.length; i++) {
-				if ( wb.shapesArray[i].selected === true )
+	  	if ( wb.whiteBoards[wb.currWB].length > 0 && e.shiftKey ) {
+			for (var i = 0; i < wb.whiteBoards[wb.currWB].length; i++) {
+				if ( wb.whiteBoards[wb.currWB][i].selected === true )
 				{
-		  			wb.shapesArray[i].move( e.pageX - wb.mouseCurrX, e.pageY - wb.mouseCurrY );
+		  			wb.whiteBoards[wb.currWB][i].move( e.pageX - wb.mouseCurrX, e.pageY - wb.mouseCurrY );
 		  		}
 			}
 			wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
-			redraw(wb.shapesArray);	
+			redraw(wb.whiteBoards[wb.currWB]);	
 	  	}
 
 	  	// Position the mouse for next move.
@@ -170,17 +177,16 @@
 
 	function addToShapesArray ( shape ) {
 		// Push the shape to the array for later usage
-		wb.shapesArray.push(wb.currentShape);
-		console.log( "A shape was added to wb.shapesArray, current count: " + wb.shapesArray.length );
-		console.log( "List of all shapes: " + wb.shapesArray.toString() );
+		wb.whiteBoards[wb.currWB].push(wb.currentShape);
+		console.log( "A shape was added to wb.whiteBoards[" + [wb.currWB] + "], current count: " + wb.whiteBoards[wb.currWB].length );
 	}
 
 	function makeUndo () {
 		console.log("Starting undo.");
 
 		wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
-		wb.shapesRedo.push(wb.shapesArray.pop());
-		redraw(wb.shapesArray);
+		wb.shapesRedo.push(wb.whiteBoards[wb.currWB].pop());
+		redraw(wb.whiteBoards[wb.currWB]);
 
 		console.log("Undo done.");
 	}

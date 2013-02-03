@@ -47,7 +47,7 @@ var Shape = Base.extend({
   },
 
   move: function ( x, y ) {
-      console.log( "Moving Shape object." );
+      console.log( "Moving shape object." );
       this.x = this.x + x;
       this.y = this.y + y;
       this.endX = this.endX + x;

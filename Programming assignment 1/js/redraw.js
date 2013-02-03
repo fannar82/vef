@@ -8,7 +8,7 @@ function redraw ( shapes ) {
 
   		// Special for text
       if (shape.isText == true) {	
-  			shape.drawText(""); 
+  			shape.drawText( "" ); 
   		}; 
 	}
 	console.log("Redrawn.");

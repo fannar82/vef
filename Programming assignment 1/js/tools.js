@@ -1,7 +1,5 @@
 console.log( "Colors and tools functions loading." );
 
-//Langar svolítið að renama þessa skrá í smá svona misc color\tools or sum. (undo)
-
 $("#black").click(function() {
  	wb.color = "black";
 });
@@ -49,20 +47,20 @@ $("#img").click(function() {
 });
 
 $("#save").click(function() {
- 	saveDrawing(wb.shapesArray);
+ 	saveDrawing( wb.whiteBoards[wb.currWB] );
  	console.log("Drawing saved");
 });
 
 $("#load").click(function() {
  	var saveboxObj = $("#saveBox").val();
- 	wb.shapesArray = loadDrawing(saveboxObj);
- 	redraw(wb.shapesArray);
+ 	//wb.shapesArray = loadDrawing(saveboxObj);
+ 	redraw( loadDrawing(saveboxObj) );
  	console.log("Drawing loaded.");
 });
 
 $("#clearWB").click(function() {
  	wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
-	wb.shapesArray = [];
+	wb.whiteBoards[wb.currWB].shapesArray = [];
  	console.log( "Whiteboard cleared." );
 });
 
@@ -71,6 +69,30 @@ $("#clearWB").click(function() {
 $(selectTickness).change(function() {
 	wb.thickness = $(selectTickness).val();
 	console.log( "Line thickness = " + wb.thickness );
+});
+
+$("#prev_wb").click(function() {
+	// Only go to previous if it acutally exists.
+	if ( wb.currWB > 0 )
+	{
+		wb.currWB = wb.currWB-1;
+		//updateWhiteboard();
+		wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+		redraw(wb.whiteBoards[wb.currWB]);
+		console.log( "Previous (" + wb.currWB + ") whiteboard loaded" );
+	}
+});
+
+$("#next_wb").click(function() {
+	// Only go to next if it acutally exists.
+	if ( wb.currWB < 3 )
+	{
+		wb.currWB = wb.currWB+1;
+		//updateWhiteboard();
+		wb.context.clearRect(0, 0, wb.canvas.width, wb.canvas.height);
+		redraw(wb.whiteBoards[wb.currWB]);
+		console.log( "Next (" + wb.currWB + ") whiteboard loaded" );
+	}
 });
 
 //	This is not implemented in this version.
