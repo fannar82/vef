@@ -19,20 +19,16 @@
 	<div id="content" class="container_12">
 		
 			<div id="colorPicker" class="grid_12">
-				<p id="black">&nbsp;</p>
-				<p id="blue">&nbsp;</p>
-				<p id="red">&nbsp;</p>
-				<p id="green">&nbsp;</p>
-				<p>Thickness:
-				<select id="selectTickness">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="9">9</option>
-				</select>
-				</p>
+				<div id="posfix">
+					<div id="colorPallet" class="grid_3">
+						<div id="black" >&nbsp;</div>
+						<div id="blue" >&nbsp;</div>
+						<div id="red">&nbsp;</div>
+						<div id="green">&nbsp;</div>
+					</div>
+				</div>
+
+				<div id="commandPallet" class="grid_8">
 				<span id="load">Load</span>
 				<span id="save">Save</span>
 				<span id="rectangle">Rectangle</span>
@@ -47,7 +43,18 @@
 				<span id="undo">Undo</span>
 				<span id="clearWB">Clear</span>
 			</div>
+				<p>Thickness:
+					<select id="selectTickness">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="9">9</option>
+					</select>
+					</p>
 
+		</div>
 
 			<!--Wrapping the canvas in a "useless" DIV,
 			    to fix positioning error due to Grid960 -->
